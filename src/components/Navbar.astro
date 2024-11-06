@@ -1,0 +1,78 @@
+---
+import { sectionsLinks } from "@data/components/navbar";
+import { LINKS_PLACEHOLDER } from "node_modules/astro/dist/content/consts";
+---
+
+<header class="py-[10px] px-[20px] relative  lg:p-0  lg:h-screen lg:sticky top-0 lg:border-r-[2px] lg:bg-background_secondary lg:border-black">
+  <div class="flex justify-between items-center relative ">
+    <div class="w-full">
+      <img src="img/general/logo-aap.png" alt="" class="h-[70px] lg:w-full lg:h-auto" />
+    </div>
+    <div class="relative lg:hidden">
+      <img
+        id="menuButton"
+        src="img/general/menu-icon.svg"
+        alt=""
+        class="w-8 h-8 cursor-pointer"
+      />
+    </div>
+  </div>
+  <!-- menu mobile -->
+  <div
+    id="mobileMenu"
+    class="absolute top-[100%] left-0 w-full bg-background_secondary text-third lg:relative lg:top-0 " 
+  >
+    <ul class="flex flex-col">
+      {
+        sectionsLinks.map((link) => (
+          <li class="text-center border-b-[1px] border-background-third relative group  lg:px-[20px]">
+            <a class="block py-[10px] hover:scale-105 transition-transform ">
+              <p class="text-lg font-semibold">{link.name}</p>
+              <p class="text-sm">{link.description}</p>
+            </a>
+            {link.subSections && (
+              <ul class="absolute z-10 shadow-2xl   right-1 top-[100%] hidden group-hover:block bg-background_secondary border border-background-third">
+                {link.subSections.map((sub) => (
+                  <li class="text-center border-b-[1px] border-background-third">
+                    <a class="block py-[10px] px-[5px] hover:scale-105 transition-transform ">
+                      <p class="text-lg font-semibold">{sub.name}</p>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="hidden lg:p-[10px] lg:block">
+    <p class="text-xl font-bold text-white text-center">
+        App en redes sociales
+    </p>
+
+  </div>
+</header>
+
+<!-- script menu buttom -->
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
+
+  menuButton.addEventListener("click", () => {
+    if (mobileMenu.classList.contains("hidden")) {
+      mobileMenu.classList.remove("hidden");
+      setTimeout(() => {
+        mobileMenu.classList.add("opacity-100", "translate-y-0");
+        mobileMenu.classList.remove("opacity-0", "-translate-y-4");
+      }, 10);
+    } else {
+      mobileMenu.classList.add("opacity-0", "-translate-y-4");
+      mobileMenu.classList.remove("opacity-100", "translate-y-0");
+
+      setTimeout(() => {
+        mobileMenu.classList.add("hidden");
+      }, 300);
+    }
+  });
+</script>

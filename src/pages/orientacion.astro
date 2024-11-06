@@ -1,0 +1,37 @@
+---
+import Layout from "@layouts/Layout.astro";
+import LayoutCustomThreeSlots from "@layouts/LayoutCustomThreeSlots.astro";
+---
+
+<LayoutCustomThreeSlots title="orientacion">
+  <div slot="slot-1">
+    <header class="lg:flex lg:justify-center w-full lg:py-[10px] lg: px-[20px]">
+      <div class="lg:flex">
+        <div
+          class="lg:py-[10px] lg:px-[20px] lg:bg-background_third text-white"
+        >
+          Orientación
+        </div>
+        <div
+          class="lg:py-[10px] lg:px-[20px] lg:bg-background_fourth text-second"
+        >
+          Pasos necesarios para el registro de solicitud de nueva placa
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <div slot="slot-2">
+    <img src="" alt="" class="h-[300px] w-[500px]" />
+    <div>
+      <h2>Sistema Integral de Identificación Vehícular</h2>
+      <div>
+        {
+            
+        }
+      </div>
+    </div>
+  </div>
+
+  <div slot="slot-3"></div>
+</LayoutCustomThreeSlots>
