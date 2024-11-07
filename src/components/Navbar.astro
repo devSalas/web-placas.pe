@@ -3,7 +3,7 @@ import { sectionsLinks } from "@data/components/navbar";
 import { LINKS_PLACEHOLDER } from "node_modules/astro/dist/content/consts";
 ---
 
-<header class="py-[10px] px-[20px] relative  lg:p-0  lg:h-screen lg:sticky top-0 lg:border-r-[2px] lg:bg-background_secondary lg:border-black">
+<header class="py-[10px] px-[20px] relative  lg:p-0  lg:h-screen  lg:sticky lg:w-[200px] top-0 lg:border-r-[2px] lg:bg-background_secondary lg:border-black flex-none">
   <div class="flex justify-between items-center relative ">
     <div class="w-full">
       <img src="img/general/logo-aap.png" alt="" class="h-[70px] lg:w-full lg:h-auto" />
@@ -20,20 +20,20 @@ import { LINKS_PLACEHOLDER } from "node_modules/astro/dist/content/consts";
   <!-- menu mobile -->
   <div
     id="mobileMenu"
-    class="absolute  top-[100%] left-0 w-full bg-background_secondary text-third lg:relative lg:top-0 hidden lg:hidden" >
+    class="absolute w-full top-[100%] left-0  bg-background_secondary text-third lg:relative lg:top-0 hidden lg:hidden" >
     <ul class="flex-col  lg:flex">
       {
         sectionsLinks.map((link) => (
           <li class="text-center border-b-[1px] border-background-third relative group  lg:px-[20px]">
-            <a class="block py-[10px] hover:scale-105 transition-transform ">
+            <a href={link.path} class="block py-[10px] hover:scale-105 transition-transform ">
               <p class="text-lg font-semibold">{link.name}</p>
               <p class="text-sm">{link.description}</p>
             </a>
             {link.subSections && (
-              <ul class="absolute z-10 shadow-2xl   right-1 top-[100%] hidden group-hover:block bg-background_secondary border border-background-third">
+              <ul  class="absolute z-10 shadow-2xl   right-1 top-[100%] hidden group-hover:block bg-background_secondary border border-background-third">
                 {link.subSections.map((sub) => (
                   <li class="text-center border-b-[1px] border-background-third">
-                    <a class="block py-[10px] px-[5px] hover:scale-105 transition-transform ">
+                    <a  class="block py-[10px] px-[5px] hover:scale-105 transition-transform ">
                       <p class="text-lg font-semibold">{sub.name}</p>
                     </a>
                   </li>
@@ -45,22 +45,23 @@ import { LINKS_PLACEHOLDER } from "node_modules/astro/dist/content/consts";
       }
     </ul>
   </div>
+  <!-- desktop -->
   <div
-    class="absolute  top-[100%] left-0 w-full bg-background_secondary text-third lg:relative lg:top-0 hidden lg:block" >
-    <ul class="flex-col  lg:flex">
+    class="  bg-background_secondary  text-third lg:relative lg:top-0 hidden lg:block" >
+    <ul class="flex-col  lg:flex ">
       {
         sectionsLinks.map((link) => (
-          <li class="text-center border-b-[1px] border-background-third relative group  lg:px-[20px]">
-            <a class="block py-[10px] hover:scale-105 transition-transform ">
+          <li class="text-center border-b-[1px] border-background-third relative group  lg:px-[20px] lg:text-start cursor-pointer">
+            <a href={link.path} class="block py-[10px]   ">
               <p class="text-lg font-semibold">{link.name}</p>
               <p class="text-sm">{link.description}</p>
-            </a>
+            </a>   
             {link.subSections && (
-              <ul class="absolute z-10 shadow-2xl   right-1 top-[100%] hidden group-hover:block bg-background_secondary border border-background-third">
+              <ul class="absolute z-10 shadow-2xl w-[200px] hidden   -right-full top-[1px] group-hover:block bg-background_secondary   border border-background-third">
                 {link.subSections.map((sub) => (
-                  <li class="text-center border-b-[1px] border-background-third">
-                    <a class="block py-[10px] px-[5px] hover:scale-105 transition-transform ">
-                      <p class="text-lg font-semibold">{sub.name}</p>
+                  <li class="text-center border-b-[1px] border-background-third hover:bg-background_secondary/">
+                    <a href={sub.path} class="block py-[10px] px-[10px]  ">
+                      <p class="text-base font-semibold">{sub.name}</p>
                     </a>
                   </li>
                 ))}

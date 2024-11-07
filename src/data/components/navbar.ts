@@ -1,54 +1,55 @@
 export const sectionsLinks:LinkSections[] = [
     {
         name:"Inicio",
-        path:"/inicio",
+        path:"https://www.placas.pe/Index.aspx",
         description:"Página Principal"
     },
     {   
         name:"Orientación",
-        path:"/orientación.html",
-        description:"Trámites, consultas y puntos de entrega"
+        path:"/orientacion",
+        description:"Trámites, consultas y puntos de entrega",
+        subSections:[
+            {
+                name:"Tipos de Placas",
+                path:"/orientacion/tipo-de-placas"
+            },
+            {
+                name:"Procedimientos y Requisitos",
+                path:"/orientacion/procedimientos-y-requisitos",
+            },
+            {
+                name:"Canales de atención",
+                path:"/orientacion/canales-de-atencion",
+            },
+            {
+                name:"Bancos Afilidos",
+                path:"/orientacion/bancos-afilidados",
+            },
+            {
+                name:"Oficinas Registrales",
+                path:"/orientacion/oficinas-registrales",
+            },
+            {
+                name:"Puntos de Entrega",
+                path:"/orientacion/puntos-de-entrega",
+            },
+            {
+                name:"Base Legal",
+                path:"/orientacion/preguntas-frecuentes",
+            },
+             
+        ]
     },
     {
         name:"Multimedia",
-        path:"/Multimedia",
+        path:"/multimedia",
         description:"Videos Instructivos"
     },
     {
         name:"Novedades",
-        path:"/inicio",
+        path:"/novedades",
         description:"Página Principal",
-        subSections:[
-            {
-                name:"Tipos de Placas",
-                path:"/tipo-de-placas"
-            },
-            {
-                name:"Procedimientos y Requisitos",
-                path:"/procedimientos-y-requisitos",
-            },
-            {
-                name:"Canales de atención",
-                path:"/inicio",
-            },
-            {
-                name:"Bancos Afilidos",
-                path:"/bancos-afilidados",
-            },
-            {
-                name:"Oficinas Registrales",
-                path:"/oficinas-registrales",
-            },
-            {
-                name:"Puntos de Entrega",
-                path:"/puntos-de-entrega",
-            },
-            {
-                name:"Base Legal",
-                path:"/Preguntas Frecuentes",
-            },
-             
-        ]
+       
     },
     {
         name:"Alerta Vehicular",

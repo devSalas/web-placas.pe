@@ -1,0 +1,30 @@
+---
+import Body from "@components/Body.astro";
+import Header from "@components/Header.astro";
+import { dataNovedadesPage } from "@data/page/novedades";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="">
+  <Header title={dataNovedadesPage.h1} subtitle={dataNovedadesPage.subtitle} />
+  
+   <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] sm:flex-row w-full ">
+    <div class=" w-full max-w-[700px]">
+        {
+            dataNovedadesPage.content.map((item) => (
+            <div class="flex flex-col gap-[20px] sm:gap-[30px]">
+                <h2 class="text-xl text-center">{item.title}</h2>
+                <figure class="max-w-[700px] w-full  m-auto">
+                  <a href={item.path} target="_blank">
+                    <img src={item.img} alt="" class="w-full"/>
+                  </a>
+                </figure>
+                <p class="text-sm max-w-[600px]">{item.texto}</p>
+                <a class="text-sm text-blue-500" href={item.path} target="_blank">{item.link}</a>
+            </div>
+            ))
+        }
+    </div>
+   </div>
+  
+</Layout>

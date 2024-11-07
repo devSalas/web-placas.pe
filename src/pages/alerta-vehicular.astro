@@ -1,0 +1,46 @@
+---
+import Header from "@components/Header.astro";
+import { dataAlertaVehicularPage } from "@data/page/alertaVehicular";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="alerta vehicular">
+  <Header
+    title={dataAlertaVehicularPage.h1}
+    subtitle={dataAlertaVehicularPage.subtitle}
+  />
+  <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[40px] w-full">
+    <div class="flex flex-col gap-[20px]">
+        <div class="text-xl lg:text-3xl text-center lg:text-start">
+            {dataAlertaVehicularPage.h2}
+            
+          </div>
+         
+          <div class="text-sm lg:text-base">
+            {dataAlertaVehicularPage.parrafo}
+          </div>
+    </div>
+    <div class="flex flex-col gap-[40px]">
+      {
+        dataAlertaVehicularPage.content.map((item) => (
+          <div class="flex flex-col gap-[10px]">
+            <div class="flex gap-[10px] ">
+              <div class=" ">
+                <div class="w-[40px] h-[40px] bg-black rounded-full text-white  flex justify-center items-center  grow">
+                  {item.number}
+                </div>
+              </div>
+              <div>
+                <h3 class="font-medium sm:text-lg">{item.title}</h3>
+              </div>
+            </div>
+            <div>
+              <img src={item.img} alt="" />
+            </div>
+            <p class="text-xs max-w-[700px]">{item.footer}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

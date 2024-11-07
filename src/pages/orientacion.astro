@@ -1,21 +1,98 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import LayoutCustomThreeSlots from "@layouts/LayoutCustomThreeSlots.astro";
+import Header from "@components/Header.astro";
+import { dataOrientacionPage } from "@data/page/orientacion";
 ---
 
 <Layout title="orientación">
-  <header class="lg:flex lg:justify-center w-full lg:py-[10px] lg: px-[20px]">
-    <div class="flex flex-col w-full gap-[10px] lg:flex-row">
-        <div
-            class="text-center py-[20px] font-bold text-xl bg-background_third text-white lg:text-[25px] lg:py-[30px] lg:px-[60px]"
-        >
-            {.h1}
+  <Header
+    title={dataOrientacionPage.h1}
+    subtitle={dataOrientacionPage.subtitle}
+  />
+
+  <div
+    class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] sm:flex-row w-full"
+  >
+    <div class="flex flex-col gap-[40px]">
+      <figure class="m-auto">
+        <img src={dataOrientacionPage.img} alt="" />
+      </figure>
+      <div class="flex flex-col gap-[20px]">
+        <h2 class="text-xl sm:text-2xl font-semibold text-fourth">
+          {dataOrientacionPage.h2}
+        </h2>
+        <hr />
+        <div class="flex flex-col gap-[20px] text-fourth">
+          {
+            dataOrientacionPage.content.map((item) => (
+              <div class="flex gap-[10px] ">
+                <div class=" ">
+                  <div class="w-[40px] h-[40px] bg-black rounded-full text-white  flex justify-center items-center  grow">
+                    {item.id}
+                  </div>
+                </div>
+                <div>
+                  <h3 class="font-medium sm:text-lg">{item.name}</h3>
+                  <p>{item.description}</p>
+                </div>
+              </div>
+            ))
+          }
         </div>
-        <div
-            class="text-center font-bold text-lg lg:text-base lg:flex lg:items-center lg:py-[10px] lg:px-[60px] lg:bg-background_fourth text-second lg:grow"
-        >
-            {dataMultimediaPage.subtitle}
-        </div>
+      </div>
     </div>
-</header>
+    <div class="p-[20px] flex flex-col gap-[20px] lg:gap-[50px]">
+      <div class="flex flex-col gap-[10px] text-center sm:text-start">
+        <div class="flex flex-col justify-center items-center">
+          <img src="img/general/Alo_Placas.png" alt="">
+          <p>L - V De 08:00 a 17:30</p>
+        </div>
+        <div class="p-[15px] bg-background_fourth flex flex-col gap-[10px]">
+          <div class="flex justify-center lg:justify-start  gap-[10px] border-b-[1px] border-black">
+            <div class="">
+              <img src="img/general/icono-senorita.png" alt="" />
+            </div>
+            <div>
+              <p class="font-bold">LIMA</p>
+              <p>640-3636</p>
+            </div>
+          </div>
+          <div class="flex justify-center lg:justify-start  gap-[10px] border-b-[1px] border-black">
+            <div>
+                <img src="img/general/icono-hombre.png" alt="">
+            </div>
+            <div>
+              <h4 class="font-bold">PROVINCIAS</h4>
+              <p>0800-7-1111</p>
+            </div>
+          </div>
+          <div class="flex justify-center lg:justify-start  gap-[10px] border-b-[1px] border-black">
+           <div>
+                <img src="img/general/icono-computadora.png" alt="">
+           </div>
+           <div>
+            <h4 class="font-bold">Página web</h4>
+            <p>www.placas.pe</p>
+           </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-[10px] text-center sm:text-start">
+        <h3 class="text-3xl text-primary">Videos instructivos</h3>
+        <div
+          class="p-[10px] bg-background_fourth flex justify-center items-center flex-col gap-[10px]"
+        >
+          <img src="img/general/logo-video.png" alt="" />
+          <p class="max-w-[300px] pretty">
+            “ <a href="/multimedia" class="text-blue-700"
+              >Visite la sección Multimedia con videos instructivos de trámites
+              de solicitudes de placas o visite nuestro canal de videos en
+              YouTube.</a
+            > ”<br />
+            <strong>— APP</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>

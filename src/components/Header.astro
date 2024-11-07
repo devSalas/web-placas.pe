@@ -1,0 +1,19 @@
+
+---
+ const {title, subtitle}  =Astro.props;
+---
+
+<header class="lg:flex lg:justify-center w-full lg:py-[10px] lg: px-[20px]">
+    <div class="flex flex-col w-full gap-[10px] lg:flex-row">
+        <div
+            class="text-center py-[20px] font-bold text-xl bg-background_third text-white lg:text-[25px] lg:py-[30px] lg:px-[60px] whitespace-nowrap"
+        >
+            {title}
+        </div>
+        <div
+            class="text-center font-semibold text-fourth text-lg text-base lg:flex lg:items-center lg:py-[10px] lg:px-[60px] lg:bg-background_fourth text-second lg:grow"
+        >
+            {subtitle}
+        </div>
+    </div>
+</header>
