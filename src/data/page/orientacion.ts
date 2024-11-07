@@ -1,6 +1,11 @@
-export const  subtitle ="Sistema Integral de Identificación Vehícular"
 
-export const vihicle_identification = [
+
+export const orientacion= {
+    h1:"Orientacion",
+    subtitle:"Pasos necesarios para el registro de solicitud de nueva placa",
+    img:"img/pages/orientacion/1.png",
+    h2:"Sistema Integral de Identificación Vehícular",
+   content:[
     {
         name:"Registro",
         description:"Crea tu usuario para acceder al sistema y generar la solicitud de la nueva placa de rodaje."
@@ -17,4 +22,5 @@ export const vihicle_identification = [
         name:"Entrega de Placas",
         description:"Finalizada la solicitud y de acuerdo al trámite realizado le indicarán los requisitos indespensables para recojer la placa y el lugar de entrega"
     }
-]
+   ]
+}

@@ -20,9 +20,8 @@ import { LINKS_PLACEHOLDER } from "node_modules/astro/dist/content/consts";
   <!-- menu mobile -->
   <div
     id="mobileMenu"
-    class="absolute top-[100%] left-0 w-full bg-background_secondary text-third lg:relative lg:top-0 " 
-  >
-    <ul class="flex flex-col">
+    class="absolute  top-[100%] left-0 w-full bg-background_secondary text-third lg:relative lg:top-0 hidden lg:hidden" >
+    <ul class="flex-col  lg:flex">
       {
         sectionsLinks.map((link) => (
           <li class="text-center border-b-[1px] border-background-third relative group  lg:px-[20px]">
@@ -46,6 +45,35 @@ import { LINKS_PLACEHOLDER } from "node_modules/astro/dist/content/consts";
       }
     </ul>
   </div>
+  <div
+    class="absolute  top-[100%] left-0 w-full bg-background_secondary text-third lg:relative lg:top-0 hidden lg:block" >
+    <ul class="flex-col  lg:flex">
+      {
+        sectionsLinks.map((link) => (
+          <li class="text-center border-b-[1px] border-background-third relative group  lg:px-[20px]">
+            <a class="block py-[10px] hover:scale-105 transition-transform ">
+              <p class="text-lg font-semibold">{link.name}</p>
+              <p class="text-sm">{link.description}</p>
+            </a>
+            {link.subSections && (
+              <ul class="absolute z-10 shadow-2xl   right-1 top-[100%] hidden group-hover:block bg-background_secondary border border-background-third">
+                {link.subSections.map((sub) => (
+                  <li class="text-center border-b-[1px] border-background-third">
+                    <a class="block py-[10px] px-[5px] hover:scale-105 transition-transform ">
+                      <p class="text-lg font-semibold">{sub.name}</p>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+
+
   <div class="hidden lg:p-[10px] lg:block">
     <p class="text-xl font-bold text-white text-center">
         App en redes sociales

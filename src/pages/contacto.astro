@@ -1,0 +1,91 @@
+---
+import { dataContactPage } from "@data/page/contacto";
+import Layout from "@layouts/Layout.astro";
+import LayoutCustomThreeSlots from "@layouts/LayoutCustomThreeSlots.astro";
+---
+
+<Layout title="contacto">
+    <header class="lg:flex lg:justify-center w-full lg:py-[10px] lg: px-[20px]">
+        <div class="flex flex-col w-full gap-[10px] lg:flex-row">
+            <div
+                class="text-center py-[20px] font-bold text-xl bg-background_third text-white lg:text-[25px] lg:py-[30px] lg:px-[60px]"
+            >
+                {dataContactPage.h1}
+            </div>
+            <div
+                class="text-center font-bold text-lg lg:text-base lg:flex lg:items-center lg:py-[10px] lg:px-[60px] lg:bg-background_fourth text-second lg:grow"
+            >
+                {dataContactPage.subtitle}
+            </div>
+        </div>
+    </header>
+    <div class="py-[40px] px-[20px] lg:flex lg:gap-[10px]">
+        <form
+            action=""
+            class="flex flex-col gap-[5px] w-full px-[20px] max-w-[600px] m-auto"
+        >
+            <div class="flex flex-col gap-[5px]">
+                <label for=""> Nombre y Apellidos: </label>
+                <input
+                    type="text"
+                    class="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
+                />
+            </div>
+            <div class="flex flex-col gap-[5px]">
+                <label for=""> Correo Electrónico: </label>
+                <input
+                    type="text"
+                    class="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
+                />
+            </div>
+            <div class="flex flex-col gap-[5px]">
+                <label for=""> Titulo del mensaje: </label>
+                <input
+                    type="text"
+                    class="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
+                />
+            </div>
+            <div class="flex flex-col gap-[5px]">
+                <label for=""> Mensaje: </label>
+                <textarea
+                    class="h-[90px] rounded-[10px] border-[1px] border-black resize-none"
+                >
+                </textarea>
+            </div>
+            <div class="flex justify-center items-center pt-[20px] lg:justify-start">
+                <button
+                    class="py-[10px] px-[30px] bg-black text-white rounded-lg lg:px-[50px]"
+                    >Enviar</button
+                >
+            </div>
+        </form>
+        <div class="p-[20px] flex flex-col gap-[20px] lg:gap-[50px]">
+            <div class="flex flex-col gap-[10px] text-center sm:text-start">
+                <h3 class="text-3xl text-primary">Central Telefónica</h3>
+                <div class="p-[10px] bg-background_fourth flex flex-col gap-[10px]">
+                    <div class="flex flex-col gap-[5px]"
+                    >
+                        <h4 class="font-bold">Atención al Cliente</h4>
+                        <p>640-3636 Lima</p>
+                        <p>0800-7-1111 Provincias</p>
+                    </div>
+                    <div class="flex flex-col gap-[5px]">
+                        <h4 class="font-bold">Horario de Atención</h4>
+                        <p>Lunes a Viernes de 8:00am - 5:30pm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col gap-[10px] text-center sm:text-start">
+                <h3 class="text-3xl text-primary">Asociación Automotriz del Perú</h3>
+                <div class="p-[10px] bg-background_fourth flex flex-col gap-[10px]">
+                    <a>
+                        Dirección : Av. Nicolás Arriola N° 304 - La Victoria – Lima 13 - Perú<br>
+                        Central Telefónica : (511) 640-3636<br>
+                        Web Site: www.aap.org.pe
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</Layout>
