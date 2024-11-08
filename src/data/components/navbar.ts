@@ -23,7 +23,7 @@ export const sectionsLinks:LinkSections[] = [
             },
             {
                 name:"Bancos Afilidos",
-                path:"/orientacion/bancos-afilidados",
+                path:"/orientacion/bancos-afiliados",
             },
             {
                 name:"Oficinas Registrales",

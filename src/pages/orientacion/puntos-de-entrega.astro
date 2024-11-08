@@ -1,0 +1,88 @@
+---
+import Header from "@components/Header.astro";
+import { dataPuntosEntregaPage } from "@data/page/orientacion/puntos-de-entrega";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Canales de Atención">
+    <Header
+      title={dataPuntosEntregaPage.h1}
+      subtitle={dataPuntosEntregaPage.subtitle}
+    />
+    <div
+      class="pb-[40px] p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] sm:flex-row w-full"
+    >
+      <ul class="list-inside list-disc pl-6 flex flex-col gap-[30px]">
+        {
+          dataPuntosEntregaPage.content.map((item) => (
+            <div class="flex flex-col gap-[10px]">
+              <li class="text-lg sm:text-xl lg:text-2xl font-bold">
+                {item.title}
+              </li>
+              <div class="pl-[20px]">
+                {item.parrafos.map((text) => (
+                  <p set:html={text} />
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </ul>
+      <div class="p-[20px] flex flex-col gap-[20px] lg:gap-[50px]">
+        <div class="flex flex-col gap-[10px] text-center sm:text-start">
+          <div class="flex flex-col justify-center items-center">
+            <img src="/img/general/Alo_Placas.png" alt="">
+            <p>L - V De 08:00 a 17:30</p>
+          </div>
+          <div class="p-[15px] bg-background_fourth flex flex-col gap-[10px]">
+            <div class="flex justify-center lg:justify-start  gap-[10px] border-b-[1px] border-black">
+              <div class="">
+                <img src="/img/general/icono-senorita.png" alt="" />
+              </div>
+              <div>
+                <p class="font-bold">LIMA</p>
+                <p>640-3636</p>
+              </div>
+            </div>
+            <div class="flex justify-center lg:justify-start  gap-[10px] border-b-[1px] border-black">
+              <div>
+                  <img src="/img/general/icono-hombre.png" alt="">
+              </div>
+              <div>
+                <h4 class="font-bold">PROVINCIAS</h4>
+                <p>0800-7-1111</p>
+              </div>
+            </div>
+            <div class="flex justify-center lg:justify-start  gap-[10px] border-b-[1px] border-black">
+             <div>
+                  <img src="/img/general/icono-computadora.png" alt="">
+             </div>
+             <div>
+              <h4 class="font-bold">Página web</h4>
+              <p>www.placas.pe</p>
+             </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-[10px] text-center sm:text-start">
+          <h3 class="text-3xl text-primary">Videos instructivos</h3>
+          <div
+            class="p-[10px] bg-background_fourth flex justify-center items-center flex-col gap-[10px]"
+          >
+            <img src="img/general/logo-video.png" alt="" />
+            <p class="max-w-[300px] pretty">
+              “ <a href="/multimedia" class="text-blue-700"
+                >Visite la sección Multimedia con videos instructivos de trámites
+                de solicitudes de placas o visite nuestro canal de videos en
+                YouTube.</a
+              > ”<br />
+              <strong>— APP</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+  </Layout>
+  

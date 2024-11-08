@@ -1,0 +1,54 @@
+---
+import Header from "@components/Header.astro";
+import { dataOrientacionPage } from "@data/page/orientacion";
+import { dataBancosAfiliadosPages } from "@data/page/orientacion/bancos-afiliados";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Bancos Afiliados">
+  <Header
+    title={dataBancosAfiliadosPages.h1}
+    subtitle={dataOrientacionPage.subtitle}
+  />
+
+  <div class="flex flex-col gap-[30px] p-[20px] pb-[60px] lg:pb-[100px]">
+    {
+      dataBancosAfiliadosPages.content.map((item) => (
+        <div>
+          <div class="flex gap-[10px] relative">
+            <div class="absolute lg:relative ">
+              <div class=" w-[40px] h-[40px] bg-black rounded-full text-white  flex justify-center items-center  grow">
+                {item.id}
+              </div>
+            </div>
+            <div class="flex flex-col gap-[10px] lg:gap-[20px]">
+              <h3 class="font-semibold text-lg sm:text-xl h-[40px] flex justify-start items-center pl-[60px] lg:pl-0  ">
+                {item.title}
+              </h3>
+             {item?.description && <p class="max-w-[500px]">{item.description}</p>}
+              <div>
+                {item?.img && (
+                  <div>
+                    <img src={item.img} alt="" />
+                  </div>
+                )}
+                {item?.banks?.length > 0 && (
+                  <div class="grid grid-cols-5 max-w-[700px]">
+                    {item.banks.map((subItem) => (
+                      <div
+                        class={`border-[1px] border-blank flex justify-center items-center text-center py-[10px] ${subItem?.style} text-xs sm:text-sm lg:text-base`}
+                      >
+                        {subItem?.title}
+                        {subItem?.img && <img src={subItem.img} alt="" />}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Layout>
