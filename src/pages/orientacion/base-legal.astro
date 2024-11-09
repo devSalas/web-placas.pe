@@ -1,0 +1,39 @@
+---
+import Header from "@components/Header.astro";
+import { dataReglamentoPlaca } from "@data/page/orientacion/base-legal";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="">
+  <Header title="Orientación" subtitle="Base Legal" />
+  <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] lg:flex-row w-full lg:pb-[100px]">
+    <section class="p-4">
+        <h1 class="text-2xl font-bold mb-4">{dataReglamentoPlaca.title}</h1>
+        {
+          dataReglamentoPlaca.capitulos.map((capitulo) => (
+            <div class="mb-6">
+              <h2 class="text-lg font-semibold mb-2">{capitulo.titulo}</h2>
+              {capitulo.articulos.map((articulo) => (
+                <div class="mb-4">
+                  <h3 class="font-medium">{articulo.nombre}</h3>
+                  {Array.isArray(articulo.contenido) ? (
+                    <ul class=" list-inside ml-6 mt-2">
+                      {articulo.contenido.map((item) => (
+                        <li class="mb-2">{item}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p class="mt-2">{articulo.contenido}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))
+        }
+      </section>
+
+      <section>
+        
+      </section>
+  </div>
+</Layout>
