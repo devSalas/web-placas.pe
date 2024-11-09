@@ -1,5 +1,54 @@
-<div class="max">
-     {
-         
-     }
+---
+import { dataReglamentoAnexos } from "@data/components/base_legal/navbarAnexo";
+import { dataReglamentoTitulos } from "@data/components/base_legal/reglamentos";
+---
+
+<div class="w-[250px] max-w-[400px] ">
+     <div class="flex flex-col gap-[10px] p-[10px] sm:p-[20px] lg:p-[30px] bg-background_fourth">
+          <div>
+               <h3 class="font-bold">{dataReglamentoTitulos.titulos.title}</h3>
+               <h3 class="font-bold">
+                    {dataReglamentoTitulos.titulos.subtitle}
+               </h3>
+          </div>
+          <hr class="" />
+
+          {
+               dataReglamentoTitulos.titulos.content.map((item) => (
+                    <div>
+                         <p class="font-bold">{item.nombre}</p>
+                         <a href={item.enlace} class="text-sm text-blue-800 hover:text-blue-500">{item.descripcion}</a>
+                    </div>
+                    <hr />
+               ))
+          }
+          <div>
+               <h3 class="font-bold">{dataReglamentoTitulos.disposicion.title}</h3>
+               <h3 class="font-bold">
+                    {dataReglamentoTitulos.disposicion.subtitle}
+               </h3>
+          </div>
+          <hr />
+
+          {
+               dataReglamentoTitulos.titulos.content.map((item) => (
+                    <div>
+                         <p class="font-bold">{item.nombre}</p>
+                         <a href={item.enlace} class="text-sm text-blue-800 hover:text-blue-500">{item.descripcion}</a>
+                    </div>
+               ))
+          }
+          
+     </div>
+     <h2 class="text-xl sm:text-2xl lg:text-3xl py-[20px]">Anexos</h2>
+     <div class="flex flex-col gap-[10px] p-[10px] sm:p-[20px] lg:p-[30px] bg-background_fourth">
+          {
+               dataReglamentoAnexos.anexos.map(item=>(
+                    <div>
+                         <p class="font-bold">{item.nombre}</p>
+                         <a href={item.enlace} class="text-sm text-blue-800 hover:text-blue-500">{item.descripcion}</a>
+                    </div>
+               ))
+          }
+     </div>
 </div>
