@@ -11,7 +11,7 @@ export const sectionsLinks:LinkSections[] = [
         subSections:[
             {
                 name:"Tipos de Placas",
-                path:"/orientacion/tipo-de-placas"
+                path:"/orientacion/tipos-de-placas"
             },
             {
                 name:"Procedimientos y Requisitos",
@@ -20,7 +20,7 @@ export const sectionsLinks:LinkSections[] = [
             {
                 name:"Canales de atención",
                 path:"/orientacion/canales-de-atencion",
-            },
+            },  
             {
                 name:"Bancos Afilidos",
                 path:"/orientacion/bancos-afilidados",
@@ -35,6 +35,10 @@ export const sectionsLinks:LinkSections[] = [
             },
             {
                 name:"Base Legal",
+                path:"/orientacion/base-legal",
+            },
+            {
+                name:"Preguntas Frecuentes",
                 path:"/orientacion/preguntas-frecuentes",
             },
              
