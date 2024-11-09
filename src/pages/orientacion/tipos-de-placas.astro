@@ -1,0 +1,54 @@
+---
+import CardContacto from "@components/CardContacto.astro";
+import Header from "@components/Header.astro";
+import { dataTipoPlacasPage } from "@data/page/orientacion/tipos-de-placas";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Tipos de placas">
+    <Header
+        title={dataTipoPlacasPage.title}
+        subtitle={dataTipoPlacasPage.subtitle}
+    />
+    <div
+        class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] lg:flex-row w-full"
+    >
+        <div class="flex flex-col gap-[20px] max-w-[700px]">
+            <h2 class="text-lg font-bold text-center">
+                {dataTipoPlacasPage.placasMenores.h2}
+            </h2>
+            <div class="flex flex-col gap-[5px] items-center justify-center">
+                <div class="text-base">{dataTipoPlacasPage.placasMenores.categoria}</div>
+                <div class="text-sm italic">{dataTipoPlacasPage.placasMenores.subtitle}</div>
+            </div>
+            <div class="grid grid-cols-2 gap-[30px] sm:gap-[50px]">
+                {
+                    dataTipoPlacasPage.placasMenores.subcategorias.map(
+                        (item) => (
+                            <div class="flex flex-col gap-[10px]">
+                                <div class="text-center">
+                                    {item?.title && <h3>{item.title}</h3>}
+                                    {item?.name && <h4 class="italic text-xs">{item.name}</h4>}
+                                </div>
+                                {item?.img && (
+                                    <div class="m-auto">
+                                        <img src={item.img} alt="" />
+                                    </div>
+                                )}
+                                {
+                                    item?.parrafo && <div class="flex justify-center items-center w-full h-full"><p class="text-sm ">{item.parrafo}</p></div>
+                                }
+                            </div>
+                        ),
+                    )
+                }
+            </div>
+            <div>
+                
+            </div>
+        </div>
+        <div>
+            <CardContacto />
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,45 @@
+---
+import CardContacto from "@components/CardContacto.astro";
+import Header from "@components/Header.astro";
+import { dataPreguntasFrecuentesPage } from "@data/page/orientacion/preguntas-frecuentes";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="Preguntas Frecuentes">
+    <Header
+        title={dataPreguntasFrecuentesPage.title}
+        subtitle={dataPreguntasFrecuentesPage.subtitle}
+    />
+    <div
+        class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] lg:flex-row w-full "
+    >
+        <div class="flex flex-col gap-[20px] max-w-[700px]">
+            <p>
+                {dataPreguntasFrecuentesPage.parrafo}
+            </p>
+            <div class="flex flex-col gap-[25px] ">
+                {
+                    dataPreguntasFrecuentesPage.content.map((item) => (
+                        <div class="flex flex-col gap-[10px] text-fourth">
+                            <div class="flex flex-col gap-[5px]">
+                                <h2 class="text-xl sm:text-2xl font-semibold ">
+                                    {item.title}
+                                </h2>
+                                <p set:html={item.parrafo}></p>
+                            </div>
+                            <ul>
+                                {item.lista.map((item) => (
+                                   <li set:html={item} />
+                                ))}
+                            </ul>
+                        </div>
+                        
+                    ))
+                }
+            </div>
+        </div>
+        <div>
+            <CardContacto/>
+        </div>
+    </div>
+</Layout>
