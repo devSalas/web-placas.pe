@@ -51,7 +51,7 @@ import { LINKS_PLACEHOLDER } from "node_modules/astro/dist/content/consts";
     <ul class="flex-col  lg:flex  ">
       {
         sectionsLinks.map((link) => (
-          <li class="text-center border-b-[1px] border-background-third relative group  lg:px-[20px] lg:text-start cursor-pointer">
+          <li class="text-center border-b-[1px] border-background-third relative group   lg:px-[20px] lg:text-start cursor-pointer">
             <a href={link.path} class="block py-[10px]   ">
               <p class="text-lg font-semibold">{link.name}</p>
               <p class="text-sm">{link.description}</p>
@@ -59,7 +59,7 @@ import { LINKS_PLACEHOLDER } from "node_modules/astro/dist/content/consts";
             {link.subSections && (
               <ul class="absolute  shadow-2xl w-[200px] hidden   -right-full top-[1px] group-hover:block bg-background_secondary   border border-background-third">
                 {link.subSections.map((sub) => (
-                  <li class="text-center border-b-[1px] border-background-third hover:bg-background_secondary/">
+                  <li class="text-center lg:text-start border-b-[1px] border-background-third hover:text-secondary">
                     <a href={sub.path} class="block py-[10px] px-[10px]  ">
                       <p class="text-base font-semibold">{sub.name}</p>
                     </a>

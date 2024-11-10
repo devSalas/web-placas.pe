@@ -1,0 +1,47 @@
+---
+import Header from "@components/Header.astro";
+import NavbarReglamentos from "@components/NavbarReglamentos.astro";
+import { dataBaseLegalTituloII } from "@data/page/base_legal/2";
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="">
+  <Header title={dataBaseLegalTituloII.titulo} subtitle={dataBaseLegalTituloII.subtitulo} />
+  <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] lg:flex-row w-full lg:pb-[100px]">
+    <section class="p-4">
+      <h1 class="text-2xl font-bold mb-4">{dataBaseLegalTituloII.numeroTitulo}</h1>
+      {dataBaseLegalTituloII.capitulos.map(capitulo => (
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold mb-2">{capitulo.nombre}</h2>
+          {capitulo.articulos.map(articulo => (
+            <div class="mb-4">
+              <h3 class="font-medium">{articulo.nombre}</h3>
+              {articulo.contenido.map(contenido => (
+                <div class="mb-4">
+                  <p class="mt-2">{contenido.descripcion}</p>
+                  {contenido.detalles && contenido.detalles.map(detalle => (
+                    <div class="mt-4">
+                      {detalle.subtipo && <h4 class="font-medium mt-2">{detalle.subtipo}</h4>}
+                      <p class="mt-2">{detalle.descripcion}</p>
+                      {detalle.subdetalles && (
+                        <ul class=" list-inside ml-6 mt-2">
+                          {detalle.subdetalles.map(subdetalle => (
+                            <li class="mb-2">{subdetalle}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      ))}
+    </section>
+
+    <section>
+      <NavbarReglamentos />
+    </section>
+  </div>
+</Layout>

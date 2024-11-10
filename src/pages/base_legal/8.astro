@@ -1,0 +1,61 @@
+---
+import Header from "@components/Header.astro";
+import NavbarReglamentos from "@components/NavbarReglamentos.astro";
+import disposicionesComplementariasModificatorias from "@data/page/base_legal/8";
+ 
+
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="">
+  <Header title={disposicionesComplementariasModificatorias.titulo} subtitle={disposicionesComplementariasModificatorias.subtitulo} />
+  <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] lg:flex-row w-full lg:pb-[100px]">
+    <section class="p-4">
+      <h1 class="text-2xl font-bold mb-4">{disposicionesComplementariasModificatorias.numeroTitulo}</h1>
+      <p class="text-lg font-semibold mb-4">{disposicionesComplementariasModificatorias.reglamento}</p>
+
+      {disposicionesComplementariasModificatorias.articulos?.map(articulo => (
+        <div class="mb-6" key={articulo.subtitulo}>
+          <h2 class="text-lg font-semibold mb-2">{articulo.subtitulo}</h2>
+          {Array.isArray(articulo.descripcion) ? (
+            articulo.descripcion.map((item, index) => (
+              typeof item === 'string' ? (
+                <p class="mt-2" key={index}>{item}</p>
+              ) : (
+                item.detalles && (
+                  <ul class="ml-6 mt-2" key={`list-${index}`}>
+                    {item.detalles.map((detalle, i) => (
+                      <li class="mb-2" key={i}>{detalle}</li>
+                    ))}
+                  </ul>
+                )
+              )
+            ))
+          ) : (
+            <p class="mt-2">{articulo.descripcion}</p>
+          )}
+        </div>
+      ))}
+      <div>
+        <div>“Artículo 2960.- (…) </div>
+        <div>INFRACCIÓN CALIFICACIÓN (…) </div>
+        <h2 class="text-lg font-semibold mb-2">F. Infracciones a la Documentación</h2>
+        <div class="flex flex-col gap-[20px]">
+            {
+                disposicionesComplementariasModificatorias.infracciones.map((item)=>(
+                    <div class="flex gap-[10px] justify-between justify-center">
+                        <p class="grow max-w-[600px]">{item.description}</p>
+                        <p class="] flex-initial whitespace-nowrap">{item.nivel}</p>
+                    </div>
+                ))
+            }
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <NavbarReglamentos />
+    </section>
+  </div>
+</Layout>

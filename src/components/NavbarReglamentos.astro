@@ -31,10 +31,11 @@ import { dataReglamentoTitulos } from "@data/components/base_legal/reglamentos";
           <hr />
 
           {
-               dataReglamentoTitulos.titulos.content.map((item) => (
+               dataReglamentoTitulos.disposicion.content.map((item) => (
                     <div>
-                         <p class="font-bold">{item.nombre}</p>
-                         <a href={item.enlace} class="text-sm text-blue-800 hover:text-blue-500">{item.descripcion}</a>
+             
+                         <a href={item.enlace} class="text-sm text-blue-800 hover:text-blue-500">{item.nombre}</a>
+                         <hr/>
                     </div>
                ))
           }
@@ -46,7 +47,7 @@ import { dataReglamentoTitulos } from "@data/components/base_legal/reglamentos";
                dataReglamentoAnexos.anexos.map(item=>(
                     <div>
                          <p class="font-bold">{item.nombre}</p>
-                         <a href={item.enlace} class="text-sm text-blue-800 hover:text-blue-500">{item.descripcion}</a>
+                         <a href={item.enlace} target="_blank" class="text-sm text-blue-800 hover:text-blue-500">{item.descripcion}</a>
                     </div>
                ))
           }

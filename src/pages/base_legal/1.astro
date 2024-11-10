@@ -1,0 +1,56 @@
+---
+import Header from "@components/Header.astro";
+import NavbarReglamentos from "@components/NavbarReglamentos.astro";
+import { dataBaseLegal } from "@data/page/base_legal/1";
+import Layout from "@layouts/Layout.astro";
+
+
+---
+
+<Layout title="titulo 1">
+    <Header title={dataBaseLegal.titulo} subtitle={dataBaseLegal.reglamento}/>
+   <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] sm:flex-row w-full">
+    <section class="p-4">
+
+        {dataBaseLegal.capitulos.map(capitulo => (
+          <div class="mb-6">
+            <h2 class="text-lg font-semibold mb-2">{capitulo.nombre}</h2>
+            {capitulo.articulos.map(articulo => (
+              <div class="mb-4">
+                <h3 class="font-medium">{articulo.nombre}</h3>
+                {articulo.contenido.map(clasificacion => (
+                  <div class="mb-4">
+                    <h4 class="font-medium mt-2">{clasificacion.nombre}</h4>
+                    <p class="mt-2">{clasificacion.descripcion}</p>
+                    {clasificacion.detalles && (
+                      <ul class=" list-inside ml-6 mt-2">
+                        {clasificacion.detalles.map(detalle => (
+                          <li class="mb-2">{detalle}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {clasificacion.subclasificaciones && clasificacion.subclasificaciones.map(sub => (
+                      <div class="mt-4">
+                        <h5 class="font-medium">{sub.nombre}</h5>
+                        <p class="mt-2">{sub.descripcion}</p>
+                        {sub.detalles && (
+                          <ul class=" list-inside ml-6 mt-2">
+                            {sub.detalles.map(subdetalle => (
+                              <li class="mb-2">{subdetalle}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        ))}
+    </section>
+    <section>
+        <NavbarReglamentos/>
+    </section>
+   </div>
+</Layout>

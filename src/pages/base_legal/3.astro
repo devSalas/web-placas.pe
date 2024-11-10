@@ -1,0 +1,46 @@
+---
+import Header from "@components/Header.astro";
+import NavbarReglamentos from "@components/NavbarReglamentos.astro";
+import { dataBaseLegalTituloIII } from "@data/page/base_legal/3";
+
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="">
+  <Header title={dataBaseLegalTituloIII.titulo} subtitle={dataBaseLegalTituloIII.subtitulo} />
+  <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] lg:flex-row w-full lg:pb-[100px]">
+    <section class="p-4">
+      <h1 class="text-2xl font-bold mb-4">{dataBaseLegalTituloIII.numeroTitulo}</h1>
+      {dataBaseLegalTituloIII.capitulos.map(capitulo => (
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold mb-2">{capitulo.nombre}</h2>
+          {capitulo.articulos.map(articulo => (
+            <div class="mb-4">
+              <h3 class="font-medium">{articulo.nombre}</h3>
+              {Array.isArray(articulo.contenido) ? (
+                articulo.contenido.map(contenido => (
+                  <div class="mb-4">
+                    {contenido.descripcion && <p class="mt-2">{contenido.descripcion}</p>}
+                    {contenido.detalles && (
+                      <ul class=" ml-6 mt-2">
+                        {contenido.detalles.map(detalle => (
+                          <li class="mb-2">{detalle}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p class="mt-2">{articulo.contenido}</p> // Si `contenido` no es un array, simplemente lo muestra.
+              )}
+            </div>
+          ))}
+        </div>
+      ))}
+    </section>
+
+    <section>
+      <NavbarReglamentos />
+    </section>
+  </div>
+</Layout>

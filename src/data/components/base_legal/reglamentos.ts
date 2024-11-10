@@ -6,27 +6,27 @@ export const dataReglamentoTitulos = {
             {
                 nombre: "TITULO I",
                 descripcion: "CLASIFICACIÓN DE LA PLACA ÚNICA NACIONAL DE RODAJE",
-                enlace: ""
+                enlace: "/base_legal/1"
             },
             {
                 nombre: "TITULO II",
                 descripcion: "SISTEMA DE CODIFICACIÓN DE LA PLACA ÚNICA NACIONAL DE RODAJE",
-                enlace: ""
+                enlace: "/base_legal/2"
             },
             {
                 nombre: "TITULO III",
                 descripcion: "ESPECIFICACIONES TÉCNICAS DE LA PLACA ÚNICA NACIONAL DE RODAJE Y DE LA TARJETA DE IDENTIFICACIÓN VEHICULAR",
-                enlace: ""
+                enlace: "/base_legal/3"
             },
             {
                 nombre: "TITULO IV",
                 descripcion: "PROCEDIMIENTO DE ASIGNACIÓN DE LA PLACA ÚNICA NACIONAL DE RODAJE",
-                enlace: ""
+                enlace: "/base_legal/4"
             },
             {
                 nombre: "TITULO V",
                 descripcion: "CAMBIO, INVALIDEZ Y CADUCIDAD DE LA PLACA ÚNICA NACIONAL DE RODAJE",
-                enlace: ""
+                enlace: "/base_legal/5"
             }]
 
     },
@@ -42,17 +42,17 @@ export const dataReglamentoTitulos = {
         {
             nombre: "DISPOSICIONES COMPLEMENTARIAS FINALES",
             descripcion: "",
-            enlace: ""
+            enlace: "/base_legal/6"
         },
         {
             nombre: "DISPOSICIONES COMPLEMENTARIAS TRANSITORIAS",
             descripcion: "",
-            enlace: ""
+            enlace: "/base_legal/7"
         },
         {
             nombre: "DISPOSICIONES COMPLEMENTARIAS MODIFICATORIAS",
             descripcion: "",
-            enlace: ""
+            enlace: "/base_legal/8"
         }]
     }
 }
