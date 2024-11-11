@@ -80,7 +80,7 @@ export const  dataTipoPlacasPage ={
                     },
                     {
                         title:"",
-                        name:"",
+                        name:"vehiculos para el servicio de transporte interprovincial de personas",
                         img:"/img/pages/orientacion/tipos_placas/livianos_pesados/m/autobus_interprovincial.png"
                     },
                     {

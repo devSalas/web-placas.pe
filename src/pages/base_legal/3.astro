@@ -1,5 +1,6 @@
 ---
 import Header from "@components/Header.astro";
+import NavbarBaseLegal from "@components/NavbarBaseLegal.astro";
 import NavbarReglamentos from "@components/NavbarReglamentos.astro";
 import { dataBaseLegalTituloIII } from "@data/page/base_legal/3";
 
@@ -8,6 +9,7 @@ import Layout from "@layouts/Layout.astro";
 
 <Layout title="">
   <Header title={dataBaseLegalTituloIII.titulo} subtitle={dataBaseLegalTituloIII.subtitulo} />
+  <NavbarBaseLegal/>
   <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] lg:flex-row w-full lg:pb-[100px]">
     <section class="p-4">
       <h1 class="text-2xl font-bold mb-4">{dataBaseLegalTituloIII.numeroTitulo}</h1>
@@ -39,7 +41,7 @@ import Layout from "@layouts/Layout.astro";
       ))}
     </section>
 
-    <section>
+    <section class="hidden lg:block">
       <NavbarReglamentos />
     </section>
   </div>

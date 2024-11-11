@@ -38,6 +38,10 @@ export const sectionsLinks:LinkSections[] = [
                 path:"/orientacion/base-legal",
             },
             {
+                name:"Replacamiento Transporte Publico",
+                path:"/",
+            },
+            {
                 name:"Preguntas Frecuentes",
                 path:"/orientacion/preguntas-frecuentes",
             },

@@ -1,0 +1,73 @@
+---
+import { dataReglamentoAnexos } from "@data/components/base_legal/navbarAnexo";
+import { dataReglamentoTitulos } from "@data/components/base_legal/reglamentos";
+---
+
+<div class="text-xs flex justify-between p-[20px] bg-gray-100 lg:hidden">
+    <!-- Títulos -->
+    <div class="relative group">
+      <span class="cursor-pointer bg-background_third px-[15px] py-[5px] rounded-lg text-white">TITULOS</span>
+      <!-- Contenedor de items -->
+      <div
+        class="absolute left-0 mr-[10px] w-[calc(90vw)] max-w-[100vw] bg-background_secondary p-4 hidden group-hover:block z-10"
+      >
+        {
+          dataReglamentoTitulos.titulos.content.map((item) => (
+            <div class="w-full mb-2">
+              <p class="text-sm text-white">{item.nombre}</p>
+              <a
+                href={item.enlace}
+                class="text-xs text-blue-200 hover:text-blue-400"
+              >
+                {item.descripcion}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Disposiciones (Elemento en el medio) -->
+    <div class="relative group">
+      <span class="cursor-pointer bg-background_third px-[15px] py-[5px] rounded-lg text-white">DISPOSICIONES</span>
+      <div
+        class="absolute -left-full w-[calc(90vw)] sm:left-0 sm:w-[400px] max-w-[100vw] bg-background_secondary p-4 hidden group-hover:block z-10"
+      >
+        {
+          dataReglamentoTitulos.disposicion.content.map((item) => (
+            <div class="w-full mb-2">
+              <a
+                href={item.enlace}
+                class="text-sm text-blue-200 hover:text-blue-400"
+              >
+                {item.nombre}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Anexos (Elemento final) -->
+    <div class="relative group">
+      <span class="cursor-pointer bg-background_third px-[15px] py-[5px] rounded-lg text-white">ANEXOS</span>
+      <div
+        class="absolute right-0 w-[calc(90vw)] max-w-[100vw] bg-background_secondary p-4 hidden group-hover:block z-10"
+      >
+        {
+          dataReglamentoAnexos.anexos.map((item) => (
+            <div class="w-full mb-2">
+              <p class="font-bold text-white">{item.nombre}</p>
+              <a
+                href={item.enlace}
+                target="_blank"
+                class="text-sm text-blue-200 hover:text-blue-400"
+              >
+                {item.descripcion}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>

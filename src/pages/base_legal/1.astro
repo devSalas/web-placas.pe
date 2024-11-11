@@ -1,5 +1,6 @@
 ---
 import Header from "@components/Header.astro";
+import NavbarBaseLegal from "@components/NavbarBaseLegal.astro";
 import NavbarReglamentos from "@components/NavbarReglamentos.astro";
 import { dataBaseLegal } from "@data/page/base_legal/1";
 import Layout from "@layouts/Layout.astro";
@@ -9,6 +10,7 @@ import Layout from "@layouts/Layout.astro";
 
 <Layout title="titulo 1">
     <Header title={dataBaseLegal.titulo} subtitle={dataBaseLegal.reglamento}/>
+    <NavbarBaseLegal/>
    <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] sm:flex-row w-full">
     <section class="p-4">
 
@@ -32,7 +34,7 @@ import Layout from "@layouts/Layout.astro";
                     {clasificacion.subclasificaciones && clasificacion.subclasificaciones.map(sub => (
                       <div class="mt-4">
                         <h5 class="font-medium">{sub.nombre}</h5>
-                        <p class="mt-2">{sub.descripcion}</p>
+                        {'descripcion' in sub && <p class="mt-2">{sub.descripcion}</p>}
                         {sub.detalles && (
                           <ul class=" list-inside ml-6 mt-2">
                             {sub.detalles.map(subdetalle => (
@@ -49,7 +51,7 @@ import Layout from "@layouts/Layout.astro";
           </div>
         ))}
     </section>
-    <section>
+    <section class="hidden lg:block">
         <NavbarReglamentos/>
     </section>
    </div>

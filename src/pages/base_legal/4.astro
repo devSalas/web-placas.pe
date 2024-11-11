@@ -1,5 +1,6 @@
 ---
 import Header from "@components/Header.astro";
+import NavbarBaseLegal from "@components/NavbarBaseLegal.astro";
 import NavbarReglamentos from "@components/NavbarReglamentos.astro";
 import { dataBaseLegalTituloIV } from "@data/page/base_legal/4";
 
@@ -8,27 +9,28 @@ import Layout from "@layouts/Layout.astro";
 
 <Layout title="">
   <Header title={dataBaseLegalTituloIV.titulo} subtitle={dataBaseLegalTituloIV.subtitulo} />
+  <NavbarBaseLegal/>
   <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] lg:flex-row w-full lg:pb-[100px]">
     <section class="p-4">
       <h1 class="text-2xl font-bold mb-4">{dataBaseLegalTituloIV.numeroTitulo}</h1>
       <p class="text-lg font-semibold mb-4">{dataBaseLegalTituloIV.reglamento}</p>
 
       {dataBaseLegalTituloIV.capitulos?.map(capitulo => (
-        <div class="mb-6" key={capitulo.nombreCapitulo}>
+        <div class="mb-6" >
           <h2 class="text-lg font-semibold mb-2">{capitulo.nombreCapitulo}</h2>
           <h2 class="text-lg font-semibold mb-2">{capitulo.descripcionCapitulo}</h2>
           {capitulo.articulos?.map(articulo => (
-            <div class="mb-4" key={articulo.subtitulo}>
+            <div class="mb-4" >
               <h3 class="font-medium">{articulo.subtitulo}</h3>
               {Array.isArray(articulo.descripcion) ? (
                 articulo.descripcion.map((item, index) => (
                   typeof item === 'string' ? (
-                    <p class="mt-2" key={index}>{item}</p>
+                    <p class="mt-2" >{item}</p>
                   ) : (
                     item.detalles && (
-                      <ul class=" ml-6 mt-2" key={`list-${index}`}>
+                      <ul class=" ml-6 mt-2">
                         {item.detalles.map((detalle, i) => (
-                          <li class="mb-2" key={i}>{detalle}</li>
+                          <li class="mb-2">{detalle}</li>
                         ))}
                       </ul>
                     )
@@ -43,7 +45,7 @@ import Layout from "@layouts/Layout.astro";
       ))}
     </section>
 
-    <section>
+    <section class="hidden lg:block">
       <NavbarReglamentos />
     </section>
   </div>

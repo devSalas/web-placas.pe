@@ -50,11 +50,8 @@ export const dataBaseLegalTituloIII = {
                 },
                 {
                     nombre: "Artículo 13°.- Objeto y contenido de la calcomanía holográfica de seguridad (tercera placa)",
-                    contenido: [
-                        "La calcomanía holográfica de seguridad (tercera placa) se coloca en el vehículo de manera tal que su retiro produzca automáticamente su destrucción e inutilización. El objetivo de su uso es garantizar que las planchas metálicas asignadas a cada vehículo no sean utilizados en otro.",
-                        "El contenido y las características técnicas mínimas se consignan en el Anexo V.",
-                        "El detalle de las demás especificaciones técnicas se establecerá mediante Resolución Directorial emitida por la Dirección General de Transporte Terrestre."
-                    ]
+                    contenido: "La calcomanía holográfica de seguridad (tercera placa) se coloca en el vehículo de manera tal que su retiro produzca automáticamente su destrucción e inutilización. El objetivo de su uso es garantizar que las planchas metálicas asignadas a cada vehículo no sean utilizados en otro. El contenido y las características técnicas mínimas se consignan en el Anexo V. El detalle de las demás especificaciones técnicas se establecerá mediante Resolución Directorial emitida por la Dirección General de Transporte Terrestre."
+                    
                 },
                 {
                     nombre: "Artículo 14°.- Prohibición de alteraciones",

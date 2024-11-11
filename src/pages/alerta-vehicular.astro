@@ -31,7 +31,7 @@ import Layout from "@layouts/Layout.astro";
                 </div>
               </div>
               <div>
-                <h3 class="font-medium sm:text-lg">{item.title}</h3>
+                <h3 id={item.id} class="font-medium sm:text-lg " set:html={item.title}></h3>
               </div>
             </div>
             <div>

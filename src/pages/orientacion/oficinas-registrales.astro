@@ -1,0 +1,75 @@
+---
+import Header from "@components/Header.astro";
+import NavbarReglamentos from "@components/NavbarReglamentos.astro";
+import oficinasRegistrales from "@data/page/orientacion/oficinas-registrales";
+import Layout from "@layouts/Layout.astro";
+
+const pageTitle = "Base Legal";
+const pageSubtitle = "Relación de Oficinas a nivel nacional";
+---
+<Layout title={pageTitle}>
+    <Header title={pageTitle} subtitle={pageSubtitle} />
+    <div class="p-[20px] sm:p-[40px] lg:p-[40px] flex flex-col gap-[20px] lg:flex-row w-full lg:pb-[100px]">
+      <section class="p-4 w-full">
+        <h1 class="text-2xl font-bold mb-4">{pageSubtitle}</h1>
+  
+        <!-- Desktop Table -->
+        <div class="hidden md:block overflow-x-auto">
+          <table class="w-full border border-gray-400 border-collapse text-center">
+            <thead>
+              <tr class="bg-gray-200">
+                <th class="border border-gray-400 p-2">Zonas</th>
+                <th class="border border-gray-400 p-2">Departamentos o Regiones</th>
+                <th colspan="2" class="border border-gray-400 p-2">Placa para Vehículos Menores</th>
+                <th colspan="2" class="border border-gray-400 p-2">Placa para Vehículos Livianos y Pesados</th>
+              </tr>
+              <tr class="bg-gray-200">
+                <th class="border border-gray-400 p-2"></th>
+                <th class="border border-gray-400 p-2"></th>
+                <th class="border border-gray-400 p-2">1º Carácter</th>
+                <th class="border border-gray-400 p-2">2º Carácter</th>
+                <th class="border border-gray-400 p-2">1º Carácter</th>
+                <th class="border border-gray-400 p-2">2º Carácter</th>
+              </tr>
+            </thead>
+            <tbody>
+              {oficinasRegistrales.map((oficina) => (
+                <tr  class="border-b border-gray-400">
+                  <td class="border border-gray-400 p-2">{oficina.zona}</td>
+                  <td class="border border-gray-400 p-2">{oficina.departamentosRegiones}</td>
+                  <td class="border border-gray-400 p-2">{oficina.placaVehiculosMenores.primerCaracter}</td>
+                  <td class="border border-gray-400 p-2">{oficina.placaVehiculosMenores.segundoCaracter}</td>
+                  <td class="border border-gray-400 p-2">{oficina.placaVehiculosLivianosPesados.primerCaracter}</td>
+                  <td class="border border-gray-400 p-2">{oficina.placaVehiculosLivianosPesados.segundoCaracter}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+  
+        <!-- Mobile Cards -->
+        <div class="block md:hidden">
+          {oficinasRegistrales.map(oficina => (
+            <div  class="mb-4 border border-gray-400 p-4 rounded shadow">
+              <p class="font-semibold">Zonas: <span class="font-normal">{oficina.zona}</span></p>
+              <p class="font-semibold">Departamentos o Regiones: <span class="font-normal">{oficina.departamentosRegiones}</span></p>
+              <p class="font-semibold">Placa para Vehículos Menores:</p>
+              <ul class="ml-4">
+                <li>1º Carácter: {oficina.placaVehiculosMenores.primerCaracter}</li>
+                <li>2º Carácter: {oficina.placaVehiculosMenores.segundoCaracter}</li>
+              </ul>
+              <p class="font-semibold">Placa para Vehículos Livianos y Pesados:</p>
+              <ul class="ml-4">
+                <li>1º Carácter: {oficina.placaVehiculosLivianosPesados.primerCaracter}</li>
+                <li>2º Carácter: {oficina.placaVehiculosLivianosPesados.segundoCaracter}</li>
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+  
+      <section>
+        <NavbarReglamentos />
+      </section>
+    </div>
+  </Layout>

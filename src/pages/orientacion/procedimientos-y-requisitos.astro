@@ -21,7 +21,7 @@ import CardContacto from "@components/CardContacto.astro";
             <p class="font-regular text-base" set:html={item.name}></p>
             {item.lista && (
               <ul class=" list-inside ml-6 mt-2 text-sm">
-                {item.lista.map(subitem => (
+                { item?.lista.map((subitem )=> (
                   <li class="mb-2" set:html={subitem}></li>
                 ))}
               </ul>
@@ -36,31 +36,41 @@ import CardContacto from "@components/CardContacto.astro";
       </h2>
       <div>
         <h3 class="text-lg sm:text-2xl lg:text-3xl font-semibold mt-4">Persona Natural</h3>
-        {Object.keys(dataProcedimientoRequisitos.requisitos.personaNatural).map(key => (
-          <div class="mb-4">
-            <h4 class="font-medium sm:text-lg lg:text-xl">{dataProcedimientoRequisitos.requisitos.personaNatural[key].parrafo}</h4>
-            <ul class=" list-inside mt-2 ml-6">
-              {dataProcedimientoRequisitos.requisitos.personaNatural[key].lista.map(req => (
-                <li class="mb-2">{req}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {Object.keys(dataProcedimientoRequisitos.requisitos.personaNatural).map((key) => {
+          // Especificar que key es una clave de tipo seguro mediante aserción de tipo
+          const requisito = dataProcedimientoRequisitos.requisitos.personaNatural[key as keyof typeof dataProcedimientoRequisitos.requisitos.personaNatural];
+          return (
+            <div class="mb-4" >
+              <h4 class="font-medium sm:text-lg lg:text-xl">{requisito.parrafo}</h4>
+              <ul class="list-inside mt-2 ml-6">
+                {requisito.lista.map((req, index) => (
+                  <li class="mb-2" >{req}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
+      
   
       <div class="mt-6">
         <h3 class="text-lg sm:text-2xl lg:text-3xl font-semibold">Persona Jurídica</h3>
-        {Object.keys(dataProcedimientoRequisitos.requisitos.personaJuridica).map(key => (
-          <div class="mb-4">
-            <h4 class="font-medium">{dataProcedimientoRequisitos.requisitos.personaJuridica[key].parrafo}</h4>
-            <ul class="list-inside mt-2 ml-6">
-              {dataProcedimientoRequisitos.requisitos.personaJuridica[key].lista.map(req => (
-                <li class="mb-2">{req}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {Object.keys(dataProcedimientoRequisitos.requisitos.personaJuridica).map((key) => {
+          // Especificar que key es una clave válida de personaJuridica
+          const requisito = dataProcedimientoRequisitos.requisitos.personaJuridica[key as keyof typeof dataProcedimientoRequisitos.requisitos.personaJuridica];
+          return (
+            <div class="mb-4">
+              <h4 class="font-medium">{requisito.parrafo}</h4>
+              <ul class="list-inside mt-2 ml-6">
+                {requisito.lista.map((req, index) => (
+                  <li class="mb-2" >{req}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
+      
     </div>
   </section>
   <div>

@@ -7,7 +7,7 @@ export const dataAlertaVehicularPage = {
     content:[
         {
             number:"1",
-            title:"Registrarse en el Sistema Integral de Identificación Vehicular (SIIV)",
+            title:"<div class='flex flex-col gap-[15px]'><p> Registrarse en el Sistema Integral de Identificación Vehicular (SIIV)</p> <p> <a href='https://www.placas.pe/Account/RegisterPublicUser.aspx' target='_blank' class='text-white bg-blue-500 rounded-full px-[15px] py-[10px] border-white border-[2px]'>Registrese Aqui</a></p> <p>  Nota: Si ya cuenta con usuario en el SIIV, diríjase al <a href='#4' class='text-blue-500'> paso 3.</a> </p>  </div>",
             img:"img/pages/alerta_vehicular/1.png",
             footer:"",
         },
@@ -24,7 +24,8 @@ export const dataAlertaVehicularPage = {
         {
             number:"4",
             title:"Autenticarse en el Sistema Integral de Identificación Vehicular (SIIV).",
-            img:"img/pages/alerta_vehicular/4.png"
+            img:"img/pages/alerta_vehicular/4.png",
+            id:"4"
         },
         {
             number:"5",

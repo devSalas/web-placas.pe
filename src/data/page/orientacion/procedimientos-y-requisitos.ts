@@ -1,4 +1,43 @@
-export const dataProcedimientoRequisitos = {
+interface ProcedimientoRequisitoItem {
+    name: string;
+    lista?: string[] | ProcedimientoRequisitoItem[];
+  }
+  
+  interface Procedimiento {
+    parrafo: string;
+    lista: ProcedimientoRequisitoItem[] ;
+  }
+  
+  interface PersonaRequisitos {
+    parrafo: string;
+    lista: string[];
+  }
+  
+  interface PersonaNatural {
+    nuevaPlaca: PersonaRequisitos;
+    duplicadoNuevaPlaca: PersonaRequisitos;
+    duplicadoTerceraPlaca: PersonaRequisitos;
+  }
+  
+  interface PersonaJuridica {
+    nuevaPlaca: PersonaRequisitos;
+    duplicadoNuevaPlaca: PersonaRequisitos;
+    duplicadoTerceraPlaca: PersonaRequisitos;
+  }
+  
+  interface Requisitos {
+    personaNatural: PersonaNatural;
+    personaJuridica: PersonaJuridica;
+  }
+  
+  interface DataProcedimientoRequisitos {
+    title: string;
+    procedimiento: Procedimiento;
+    requisitos: Requisitos;
+  }
+  
+
+export const dataProcedimientoRequisitos: DataProcedimientoRequisitos = {
     title: "Procedimiento",
     procedimiento: {
         parrafo: "Para ingresar la solicitud de su nueva placa de rodaje, debe seguir los siguientes pasos:",
@@ -25,19 +64,19 @@ export const dataProcedimientoRequisitos = {
             },
             {
                 name: "3. Tomar nota del código de pago, que se le asignará al término de su solicitud.",
-                lista: ""
+                lista: []
             },
             {
                 name: "4. Acercarse a las oficinas del banco afiliado, presentar el código de pago proporcionado y realizar el pago correspondiente.",
-                lista: ""
+                lista: []
             },
             {
                 name: "5. Verificar el voucher de pago entregado por el operador del banco, antes de retirarse de la ventanilla, comprobando que sus datos (N° de placa, marca y modelo del vehículo) sean los correctos.",
-                lista: ""
+                lista: []
             },
             {
                 name: "6. Recoger su nueva placa de rodaje, si es en Lima a partir del 2do día hábil, previa confirmación electrónica, de haber realizado el pago en el banco, acercándose a nuestra oficina de entrega en Av. Nicolás Arriola 304, La Victoria. Para el caso de provincia a partir del 5to día hábil, previa confirmación electrónica, de realizado el pago en el banco, acercándose a las sedes autorizadas a nivel nacional  <a href='/canales-atencion' class='text-red-500' target='_blank'>(ver canales de atención)</a>.",
-                lista: ""
+                lista: []
             }
         ]
     },

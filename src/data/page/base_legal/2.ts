@@ -1,5 +1,33 @@
+interface SubDetalle {
+    subtipo: string;
+    descripcion: string;
+    subdetalles: string[];
+  }
+  
+  interface ContenidoDetalle {
+    descripcion: string;
+    detalles: (string | SubDetalle)[];
+  }
+  
+  interface Articulo {
+    nombre: string;
+    contenido: ContenidoDetalle[];
+  }
+  
+  interface Capitulo {
+    nombre: string;
+    articulos: Articulo[];
+  }
+  
+  interface BaseLegal {
+    titulo: string;
+    subtitulo: string;
+    numeroTitulo: string;
+    capitulos: Capitulo[];
+  }
 
-export const dataBaseLegalTituloII = {
+
+export const dataBaseLegalTituloII:BaseLegal  = {
     titulo: "Base Legal",
     subtitulo:"Reglamento de placa única nacional de rodaje.",
     numeroTitulo:"Titulo II",

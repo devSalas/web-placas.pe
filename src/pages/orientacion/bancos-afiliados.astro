@@ -32,7 +32,7 @@ import Layout from "@layouts/Layout.astro";
                     <img src={item.img} alt="" />
                   </div>
                 )}
-                {item?.banks?.length > 0 && (
+                {item?.banks?.length  && (
                   <div class="grid grid-cols-5 max-w-[700px]">
                     {item.banks.map((subItem) => (
                       <div
