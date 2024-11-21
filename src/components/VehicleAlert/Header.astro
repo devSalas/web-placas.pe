@@ -1,0 +1,20 @@
+---
+interface Props {
+  username: string;
+  userType: string;
+}
+
+const { username, userType } = Astro.props;
+---
+
+<header class="bg-gray-100 px-6 py-4 flex justify-between items-center">
+  <div class="flex items-center gap-4">
+    <img src="/aap-logo.png" alt="AAP Logo" class="h-8" />
+    <h1 class="text-xl font-semibold text-gray-800">Alerta Vehicular</h1>
+  </div>
+  
+  <div class="text-right">
+    <p class="text-sm text-gray-600">Bienvenido: <span class="font-medium">{username}</span></p>
+    <p class="text-xs text-gray-500">{userType}</p>
+  </div>
+</header>
