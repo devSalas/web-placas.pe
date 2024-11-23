@@ -1,4 +1,5 @@
 ---
+import ContactForm from "@components/ContactForm";
 import { dataContactPage } from "@data/page/contacto";
 import Layout from "@layouts/Layout.astro";
 ---
@@ -19,45 +20,7 @@ import Layout from "@layouts/Layout.astro";
         </div>
     </header>
     <div class="py-[40px] px-[20px] lg:flex lg:gap-[10px]">
-        <form
-            action=""
-            class="flex flex-col gap-[5px] w-full px-[20px] max-w-[600px] m-auto"
-        >
-            <div class="flex flex-col gap-[5px]">
-                <label for=""> Nombre y Apellidos: </label>
-                <input
-                    type="text"
-                    class="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
-                />
-            </div>
-            <div class="flex flex-col gap-[5px]">
-                <label for=""> Correo Electrónico: </label>
-                <input
-                    type="text"
-                    class="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
-                />
-            </div>
-            <div class="flex flex-col gap-[5px]">
-                <label for=""> Titulo del mensaje: </label>
-                <input
-                    type="text"
-                    class="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
-                />
-            </div>
-            <div class="flex flex-col gap-[5px]">
-                <label for=""> Mensaje: </label>
-                <textarea
-                    class="h-[90px] rounded-[10px] border-[1px] border-black resize-none"
-                >
-                </textarea>
-            </div>
-            <div class="flex justify-center items-center pt-[20px] lg:justify-start">
-                <button
-                    class="py-[10px] px-[30px] bg-black text-white rounded-lg lg:px-[50px]"
-                    >Enviar</button
-                >
-            </div>
-        </form>
+        <ContactForm client:load/>
         <div class="p-[20px] flex flex-col gap-[20px] lg:gap-[50px]">
             <div class="flex flex-col gap-[10px] text-center sm:text-start">
                 <h3 class="text-3xl text-primary">Central Telefónica</h3>
@@ -88,3 +51,5 @@ import Layout from "@layouts/Layout.astro";
         </div>
     </div>
 </Layout>
+
+
