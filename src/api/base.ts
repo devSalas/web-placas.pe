@@ -16,6 +16,8 @@ export const makeRequest = async (
       body: body ? JSON.stringify(body) : undefined,
     });
 
+    console.log(response)
+
     if (!response.ok) {
       throw new Error(`Error ${response.status}: ${response.statusText}`);
     }

@@ -9,7 +9,9 @@ export default function ContactForm() {
         title: "",
         message: "",
     });
-    const [err,setErr] = useState("")
+
+    const [err, setErr] = useState(""); // Estado para los errores
+    const [success, setSuccess] = useState(""); // Estado para el mensaje de éxito
 
     // Manejar cambios en los inputs
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -20,23 +22,60 @@ export default function ContactForm() {
         });
     };
 
+    // Función de validación de los campos del formulario
+    const validateForm = () => {
+        if (!formData.names || !formData.email || !formData.title || !formData.message) {
+            setErr("Todos los campos son obligatorios.");
+            return false;
+        }
+        setErr(""); // Limpiar errores si todo es válido
+        return true;
+    };
+
     // Manejar envío del formulario
     const handleSubmit = async (e: React.FormEvent) => {
-        try {
-            e.preventDefault();
-            const json = await CreateContact(formData);
-            console.log(json)
+        e.preventDefault();
 
+        // Validar los campos antes de enviar
+        if (!validateForm()) return;
+
+        try {
+            console.log(formData);
+            const res =await fetch("https://placasdev.aap.org.pe:8090/api/contact",{method:"POST",headers:{"Content-Type":"aplication/json"}, body:JSON.stringify({ 
+                names: "nombre de prueba",
+                email: "email@gmail.com",
+                title: "titulo de preuba",
+                message: "message"
+              })})
+            
+            const json= await res.json();
+              console.log(json)
+
+            // Verificar el código de estado de la respuesta
+            if (json.httpStatusCode === 200 || json.httpStatusCode === 201) {
+                setSuccess("Mensaje enviado con éxito.");
+                setErr(""); // Limpiar el mensaje de error si el envío fue exitoso
+            } else {
+                setErr("Hubo un error al enviar el mensaje.");
+            }
         } catch (error) {
-            console.log("entro el error",error)
+            console.log("Error al enviar el formulario:", error);
+            setErr("Hubo un error al procesar tu solicitud. Intenta de nuevo.");
         }
     };
 
+
+
     return (
-        <form
+       <div>
+         <form
             onSubmit={handleSubmit}
             className="flex flex-col gap-[5px] w-full px-[20px] max-w-[600px] m-auto"
         >
+            {/* Mensajes de error y éxito */}
+            {err && <div className="text-red-500">{err}</div>}
+            {success && <div className="text-green-500">{success}</div>}
+
             <div className="flex flex-col gap-[5px]">
                 <label htmlFor="name">Nombre y Apellidos:</label>
                 <input
@@ -89,5 +128,9 @@ export default function ContactForm() {
                 </button>
             </div>
         </form>
+        <button onClick={a}>enviar</button>
+        <br />
+        <button onClick={b}>traer datos</button>
+       </div>
     );
 }
