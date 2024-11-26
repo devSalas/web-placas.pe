@@ -1,31 +1,60 @@
-import React, { useState } from 'react';
-
+import React, { useRef, useState } from 'react';
 import { EstablishmentInfo } from './EstablishmentInfo';
 import { FormHeader } from './FormHeader';
 import { ClientForm } from './ClientForm';
 import { GuardianForm } from './GuardinForm';
 import { ProductServiceForm } from './ProductServiceForm';
 import { ComplaintDetails } from './ComplaintDetails';
+import printJS from 'print-js';
+
 
 
 
 export const ComplaintForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    fecha: "",
-    establecimiento: '',
     isMinor: false,
+    base64Document:"",
     clientData: {},
+    /* 
+      placa, nombres, apellidos,direccion,tipoDocumento,numeroDocumento,telefono,email,enviarEmail,
+    
+    */
     guardianData: {},
+    /*  nombresApoderado,direccionApoderado,emailApoderado,telefonoApoderado*/
     productService: {},
+    /* tipo:  */
     complaintDetails: {},
+    /* tipReclamo */
     SwornDeclaration: false
 
   });
 
+
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log(formData)
-    /* try {
+    const data = {
+      plate: formData.clientData?.placa,
+      email: formData.clientData?.email,
+      phoneNumber: formData.clientData.telefono,
+      firstName: formData.clientData.nombres,
+      lastName: formData.clientData.apellidos,
+      middleName:formData.clientData.apellidos ,
+      documentType:formData.clientData.tipoDocumento,
+      documentNumber: formData.clientData.numeroDocumento,
+      isMinor: formData.isMinor,
+      bookType: formData.productService.tipo, // Tipo de libro
+      description: formData.productService.descripcion, // Descripción
+      bookClaimType: formData.complaintDetails.tipo, // Tipo de reclamación del libro
+      claim:formData.complaintDetails.descripcion, // Reclamación
+      base64Document: "string", // Documento en formato base64
+      office: "string" // Oficina
+    };
+    console.log(data)
+    return
+
+    try {
       const response = await fetch('/api/submit-complaint', {
         method: 'POST',
         headers: {
@@ -41,8 +70,6 @@ export const ComplaintForm: React.FC = () => {
       alert('Formulario enviado exitosamente');
       // Reset form
       setFormData({
-        fecha: '',
-        establecimiento: '',
         isMinor: false,
         clientData: {},
         guardianData: {},
@@ -52,26 +79,34 @@ export const ComplaintForm: React.FC = () => {
     } catch (error) {
       console.error('Error:', error);
       alert('Error al enviar el formulario. Por favor, intente nuevamente.');
-    } */
+    }
+  };
+
+
+   
+
+
+ 
+  const printRef = useRef(null);
+
+  const handleImprimir = () => {
+    printJS({
+      printable: printRef.current,
+      type: 'html',
+      header: 'Mi Encabezado'
+    });
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+    <div  ref={printRef} className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="bg-gray-100 p-4 border-b">
         <h1 className="text-2xl font-bold text-gray-800">LIBRO RECLAMACIONES</h1>
       </div>
 
-      <form onSubmit={handleSubmit} className="p-6 space-y-6">
-        <FormHeader
-          codigoReclamo="AUTO-GENERATED"
-          onFechaChange={(fecha) => setFormData({ ...formData, fecha })}
-        />
+      <form   className="p-6 space-y-6">
+        <FormHeader />
 
-        <EstablishmentInfo
-          onEstablishmentChange={(establecimiento) =>
-            setFormData({ ...formData, establecimiento })
-          }
-        />
+        <EstablishmentInfo />
 
         <ClientForm
           isMinor={formData.isMinor}
@@ -141,6 +176,7 @@ export const ComplaintForm: React.FC = () => {
             Enviar
           </button>
           <button
+              onClick={handleImprimir}
             type="button"
             className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
@@ -148,6 +184,7 @@ export const ComplaintForm: React.FC = () => {
           </button>
           <button
             type="button"
+            
             className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
             Inicio

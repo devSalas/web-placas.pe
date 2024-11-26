@@ -2,7 +2,7 @@ import { makeRequest } from "./base";
 
 // Función para crear un contacto
 export const CreateContact = async (contactData: { names: string; email: string; title: string; message: string }) => {
-    const data = await makeRequest("contacts", "POST", contactData);
+    const data = await makeRequest("contact", "POST", contactData);
     return data;
 
 };

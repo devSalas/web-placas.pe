@@ -1,10 +1,14 @@
 ---
 import CustomLayout from "@layouts/CustomLayout.astro";
 import {ComplaintForm} from "@components/ComplaintsBook/ComplaintForm"
+import {PrintableForm} from "@components/ComplaintsBook/ComponentPrint"
+
+
 ---
 
 <CustomLayout title="Libro de Reclamaciones">
   <div class="w-full">
-    <ComplaintForm client:load/>
+    <PrintableForm client:only/>
+    
   </div>
 </CustomLayout>

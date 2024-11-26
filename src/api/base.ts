@@ -11,11 +11,10 @@ export const makeRequest = async (
     const response = await fetch(`${UrlBase}${endpoint}`, {
       method,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
       body: body ? JSON.stringify(body) : undefined,
     });
-
     console.log(response)
 
     if (!response.ok) {

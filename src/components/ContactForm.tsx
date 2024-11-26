@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CreateContact } from "src/api/Contact";
 
 export default function ContactForm() {
@@ -10,8 +10,27 @@ export default function ContactForm() {
         message: "",
     });
 
-    const [err, setErr] = useState(""); // Estado para los errores
-    const [success, setSuccess] = useState(""); // Estado para el mensaje de éxito
+    const [err, setErr] = useState("");
+    const [success, setSuccess] = useState(""); 
+
+
+useEffect(() => {
+    if (err) {
+      const timer = setTimeout(() => setErr(""), 3000); 
+      return () => clearTimeout(timer); 
+    }
+  }, [err]);
+
+  
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => setSuccess(""), 3000);
+      return () => clearTimeout(timer);  
+    }
+  }, [success]);
+
+
+
 
     // Manejar cambios en los inputs
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -28,7 +47,7 @@ export default function ContactForm() {
             setErr("Todos los campos son obligatorios.");
             return false;
         }
-        setErr(""); // Limpiar errores si todo es válido
+        setErr(""); 
         return true;
     };
 
@@ -36,25 +55,18 @@ export default function ContactForm() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Validar los campos antes de enviar
-        if (!validateForm()) return;
 
+        if(!validateForm()) return;
+        
         try {
-            console.log(formData);
-            const res =await fetch("https://placasdev.aap.org.pe:8090/api/contact",{method:"POST",headers:{"Content-Type":"aplication/json"}, body:JSON.stringify({ 
-                names: "nombre de prueba",
-                email: "email@gmail.com",
-                title: "titulo de preuba",
-                message: "message"
-              })})
-            
-            const json= await res.json();
-              console.log(json)
 
-            // Verificar el código de estado de la respuesta
+
+            const json = await CreateContact(formData);
+            console.log(json)
+
             if (json.httpStatusCode === 200 || json.httpStatusCode === 201) {
                 setSuccess("Mensaje enviado con éxito.");
-                setErr(""); // Limpiar el mensaje de error si el envío fue exitoso
+                setErr(""); 
             } else {
                 setErr("Hubo un error al enviar el mensaje.");
             }
@@ -67,70 +79,70 @@ export default function ContactForm() {
 
 
     return (
-       <div>
-         <form
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-[5px] w-full px-[20px] max-w-[600px] m-auto"
-        >
-            {/* Mensajes de error y éxito */}
-            {err && <div className="text-red-500">{err}</div>}
-            {success && <div className="text-green-500">{success}</div>}
+        <div>
+            <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-[5px] w-full px-[20px] min-w-[320px] sm:w-[400px] lg:w-[600px] max-w-[600px] m-auto"
+            >
+                {err && <div className="text-red-500">{err}</div>}
+                {success && <div className="text-green-500">{success}</div>}
 
-            <div className="flex flex-col gap-[5px]">
-                <label htmlFor="name">Nombre y Apellidos:</label>
-                <input
-                    type="text"
-                    id="name"
-                    name="names"
-                    value={formData.names}
-                    onChange={handleChange}
-                    className="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
-                />
-            </div>
-            <div className="flex flex-col gap-[5px]">
-                <label htmlFor="email">Correo Electrónico:</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
-                />
-            </div>
-            <div className="flex flex-col gap-[5px]">
-                <label htmlFor="title">Título del mensaje:</label>
-                <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    className="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
-                />
-            </div>
-            <div className="flex flex-col gap-[5px]">
-                <label htmlFor="message">Mensaje:</label>
-                <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="h-[90px] rounded-[10px] border-[1px] border-black resize-none p-5"
-                />
-            </div>
-            <div className="flex justify-center items-center pt-[20px] lg:justify-start">
-                <button
-                    type="submit"
-                    className="py-[10px] px-[30px] bg-black text-white rounded-lg lg:px-[50px]"
-                >
-                    Enviar
-                </button>
-            </div>
-        </form>
-        <button onClick={a}>enviar</button>
-        <br />
-        <button onClick={b}>traer datos</button>
-       </div>
+                <div className="flex flex-col gap-[5px]">
+                    <label htmlFor="name">Nombre y Apellidos:</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="names"
+                        value={formData.names}
+                        onChange={handleChange}
+                        className="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
+                        required
+                    />
+                </div>
+                <div className="flex flex-col gap-[5px]">
+                    <label htmlFor="email">Correo Electrónico:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
+                        required
+                    />
+                </div>
+                <div className="flex flex-col gap-[5px]">
+                    <label htmlFor="title">Título del mensaje:</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        className="h-[45px] py-[10px] px-[20px] rounded-[10px] border-[1px] border-black lg:h-[50px]"
+                        required
+                    />
+                </div>
+                <div className="flex flex-col gap-[5px]">
+                    <label htmlFor="message">Mensaje:</label>
+                    <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        className="h-[90px] rounded-[10px] border-[1px] border-black resize-none p-5"
+                        required
+                    />
+                </div>
+                <div className="flex justify-center items-center pt-[20px] lg:justify-start">
+                    <button
+                        type="submit"
+                        className="py-[10px] px-[30px] bg-black text-white rounded-lg lg:px-[50px]"
+                    >
+                        Enviar
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 }

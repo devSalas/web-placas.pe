@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 
 interface FormHeaderProps {
-  codigoReclamo: string;
-  onFechaChange: (fecha: string) => void;
+
 }
 
-export const FormHeader: React.FC<FormHeaderProps> = ({ codigoReclamo, onFechaChange }) => {
+export const FormHeader: React.FC<FormHeaderProps> = () => {
   const [fecha, setFecha] = useState(() => {
     const today = new Date();
     return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`; // Formato YYYY-MM-DD
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+/*   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newDate = e.target.value;
     setFecha(newDate);
     onFechaChange(newDate); // Emitimos la fecha en el formato correcto
-  };
+  }; */
 
   // Conversión para mostrar DD/MM/AAAA
   const formattedDate = fecha.split('-').reverse().join('/');
@@ -27,7 +26,7 @@ export const FormHeader: React.FC<FormHeaderProps> = ({ codigoReclamo, onFechaCh
         <input
           type="text"
           disabled
-          value={codigoReclamo}
+          value={"AUTO_GENERADO"}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           readOnly
         />
@@ -37,7 +36,6 @@ export const FormHeader: React.FC<FormHeaderProps> = ({ codigoReclamo, onFechaCh
         <input
           type="date"
           value={fecha} // Valor controlado en formato YYYY-MM-DD
-          onChange={handleChange}
           disabled
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           required
