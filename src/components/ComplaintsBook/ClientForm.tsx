@@ -19,7 +19,7 @@ export const ClientForm: React.FC<ClientFormProps> = ({
           <label className="block text-sm font-medium text-gray-700">Nro. Placa:</label>
           <input
             type="text"
-            onChange={(e) => onClientDataChange('placa', e.target.value)}
+            onChange={(e) => onClientDataChange('plate', e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
@@ -28,7 +28,7 @@ export const ClientForm: React.FC<ClientFormProps> = ({
           <label className="block text-sm font-medium text-gray-700">Nombres:</label>
           <input
             type="text"
-            onChange={(e) => onClientDataChange('nombres', e.target.value)}
+            onChange={(e) => onClientDataChange('firstname', e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
@@ -37,7 +37,7 @@ export const ClientForm: React.FC<ClientFormProps> = ({
           <label className="block text-sm font-medium text-gray-700">Apellidos:</label>
           <input
             type="text"
-            onChange={(e) => onClientDataChange('apellidos', e.target.value)}
+            onChange={(e) => onClientDataChange('lastName', e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
@@ -54,7 +54,7 @@ export const ClientForm: React.FC<ClientFormProps> = ({
         <div>
           <label className="block text-sm font-medium text-gray-700">Documento:</label>
           <select
-            onChange={(e) => onClientDataChange('tipoDocumento', e.target.value)}
+            onChange={(e) => onClientDataChange('documentType', e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           >
@@ -68,7 +68,7 @@ export const ClientForm: React.FC<ClientFormProps> = ({
           <label className="block text-sm font-medium text-gray-700">Nro. Documento:</label>
           <input
             type="text"
-            onChange={(e) => onClientDataChange('numeroDocumento', e.target.value)}
+            onChange={(e) => onClientDataChange('documentNumber', e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
@@ -77,7 +77,7 @@ export const ClientForm: React.FC<ClientFormProps> = ({
           <label className="block text-sm font-medium text-gray-700">Teléfono:</label>
           <input
             type="tel"
-            onChange={(e) => onClientDataChange('telefono', e.target.value)}
+            onChange={(e) => onClientDataChange('phoneNumber', e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />

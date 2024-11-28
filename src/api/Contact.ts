@@ -10,7 +10,7 @@ export const CreateContact = async (contactData: { names: string; email: string;
 // Función para obtener todos los contactos (como ejemplo de otro tipo de petición)
 export const GetContacts = async () => {
     try {
-        const data = await makeRequest("contacts", "GET");
+        const data = await makeRequest("contact", "GET");
         return data;
     } catch (error) {
         console.error("No se pudieron obtener los contactos:", error);

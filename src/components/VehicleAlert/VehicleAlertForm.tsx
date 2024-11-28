@@ -1,5 +1,4 @@
-import { useState, useEffect, type ChangeEvent } from 'react';
-import { CreateVehicleAlert } from 'src/api/VehicleAlert';
+import { useState, useEffect} from 'react';
 
 interface PropertiesError {
   plate: string,
@@ -28,12 +27,15 @@ export default function VehicleAlertForm() {
     e.preventDefault();
     
     try {
-      const res = await fetch("https://placasdev.aap.org.pe:8090/api/alert", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+      console.log(formData)
+      const res =await fetch("https://placasdev.aap.org.pe:8090/api/alert",{
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify(formData)
       });
-  
+
       if (!res.ok) {
         const errorData = await res.json();
         console.log("Error en la API:", errorData.messages);
@@ -41,7 +43,7 @@ export default function VehicleAlertForm() {
         throw new Error(errorData.messages[0]?.description || "Error desconocido");
       }
   
-      const json = await res.json();
+      let json = await res.json();
       console.log(json);
   
     } catch (error) {

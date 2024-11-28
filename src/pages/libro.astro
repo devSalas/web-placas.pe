@@ -8,7 +8,9 @@ import {PrintableForm} from "@components/ComplaintsBook/ComponentPrint"
 
 <CustomLayout title="Libro de Reclamaciones">
   <div class="w-full">
-    <PrintableForm client:only/>
+    <div class="lg:p-[100px]">
+      <ComplaintForm client:only="react"/>
+    </div>
     
   </div>
 </CustomLayout>

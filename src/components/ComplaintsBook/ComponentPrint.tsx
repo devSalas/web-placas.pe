@@ -21,7 +21,7 @@ interface FormPrintProps {
   };
 }
 
- const FormPrintComponent: React.FC<FormPrintProps> = ({ data }) => {
+ const FormPrintComponent = ({data}) => {
   return (
     <div id="print-container" className="font-sans max-w-3xl p-6 ">
       <div className="text-center border-b-2 border-gray-700 pb-4 mb-8">
@@ -104,11 +104,7 @@ interface FormPrintProps {
           <h2 className="text-lg font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
             Documento Adjunto
           </h2>
-         {/*  <img
-            src={data.base64Document}
-            alt="Documento Adjunto"
-            className="max-w-full border border-gray-300"
-          /> */}
+
         </div>
       )}
     </div>
@@ -116,8 +112,8 @@ interface FormPrintProps {
 };
 
 // Componente contenedor para manejar la impresión
-export const PrintableForm: React.FC = () => {
-    const data={
+export const PrintableForm= ({data}:{data:FormPrintProps}) => {
+   /*  const data={
         plate: "ABC1234",  // Placa del vehículo
         email: "juan.perez@email.com",  // Correo electrónico
         phoneNumber: "987654321",  // Número de teléfono
@@ -132,8 +128,8 @@ export const PrintableForm: React.FC = () => {
         bookClaimType: "Dañado",  // Tipo de reclamación del libro
         claim: "El libro llegó con la tapa dañada y algunas páginas rasgadas.",  // Reclamación sobre el libro
         base64Document: "aGVsbG8gd29ybGQ=",  // Documento en formato base64 (ejemplo)
-        office: "Oficina Central"  // Oficina donde se realiza el trámite
-      }
+        office: "Oficina Central"  
+      } */
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = () => {

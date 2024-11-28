@@ -12,7 +12,7 @@ export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
   const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     setCharCount(value.length);
-    onComplaintDetailsChange('descripcion', value);
+    onComplaintDetailsChange('claim', value);
   };
 
   const handleFileChange = (event:ChangeEvent) => {
@@ -42,7 +42,7 @@ export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
             type="radio"
             name="tipoReclamo"
             value="reclamo"
-            onChange={(e) => onComplaintDetailsChange('tipo', e.target.value)}
+            onChange={(e) => onComplaintDetailsChange('bookClainType', e.target.value)}
             className="rounded-full border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
@@ -53,7 +53,7 @@ export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
             type="radio"
             name="tipoReclamo"
             value="queja"
-            onChange={(e) => onComplaintDetailsChange('tipo', e.target.value)}
+            onChange={(e) => onComplaintDetailsChange('bookClainType', e.target.value)}
             className="rounded-full border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           />
           <span className="ml-2 text-sm text-gray-600">Queja</span>
