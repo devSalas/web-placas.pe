@@ -15,16 +15,43 @@ export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
     onComplaintDetailsChange('claim', value);
   };
 
-  const handleFileChange = (event:ChangeEvent) => {
-    const file = event.target.files[0]; // Obtiene el archivo seleccionado
-    if (file) {
+  const convertFileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
       const reader = new FileReader();
-
-      // Evento que se ejecuta cuando la lectura es exitosa
+  
       reader.onload = () => {
-        onComplaintDetailsChange('base64Document', reader.result);
-      
+        if (reader.result) {
+          resolve(reader.result.toString()); // Convierte el resultado en string
+        } else {
+          reject(new Error('Failed to read the file.'));
+        }
       };
+  
+      reader.onerror = () => {
+        reject(new Error('An error occurred while reading the file.'));
+      };
+  
+      reader.readAsDataURL(file); // Lee el archivo como Data URL
+    });
+  };
+  
+
+
+  const handleFile = async (file: File) => {
+    try {
+      const base64String = await convertFileToBase64(file);
+      console.log('Base64:', base64String);
+  
+      // Aquí puedes enviar el base64String a tu API
+      await fetch('/api/endpoint', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ base64Document: base64String }),
+      });
+    } catch (error) {
+      console.error('Error converting file to Base64:', error);
     }
   };
 
@@ -75,10 +102,9 @@ export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
           Adjuntar archivos adicionales:
         </label>
         <input
-          type="file"
-          multiple
+          type="file"     
           accept=".doc,.docx,.pdf,.jpg,.jpeg"
-          onChange={handleFileChange}
+          onChange={()=>handleFile}
           className="mt-1 block w-full text-sm text-gray-500
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0

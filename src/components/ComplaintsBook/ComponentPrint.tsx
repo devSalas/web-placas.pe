@@ -2,26 +2,28 @@ import React, { useRef } from "react";
 import printJS from "print-js";
 
 interface FormPrintProps {
-  data: {
-    plate?: string;
-    email?: string;
-    phoneNumber?: string;
-    firstName?: string;
-    lastName?: string;
-    middleName?: string;
-    documentType?: string;
-    documentNumber?: string;
-    isMinor?: boolean;
-    bookType?: string;
-    description?: string;
-    bookClaimType?: string;
-    claim?: string;
-    base64Document?: string;
-    office?: string;
-  };
+
+  plate?: string;
+  email?: string;
+  phoneNumber?: string;
+  firstName?: string;
+  lastName?: string;
+  middleName?: string;
+  documentType?: string;
+  documentNumber?: string;
+  isMinor?: boolean;
+  bookType?: string;
+  description?: string;
+  bookClaimType?: string;
+  claim?: string;
+  base64Document?: string;
+  office?: string;
+
 }
 
- const FormPrintComponent = ({data}) => {
+
+
+const FormPrintComponent = ({ data }:{data:FormPrintProps}) => {
   return (
     <div id="print-container" className="font-sans max-w-3xl p-6 ">
       <div className="text-center border-b-2 border-gray-700 pb-4 mb-8">
@@ -112,24 +114,24 @@ interface FormPrintProps {
 };
 
 // Componente contenedor para manejar la impresión
-export const PrintableForm= ({data}:{data:FormPrintProps}) => {
-   /*  const data={
-        plate: "ABC1234",  // Placa del vehículo
-        email: "juan.perez@email.com",  // Correo electrónico
-        phoneNumber: "987654321",  // Número de teléfono
-        firstName: "Juan",  // Primer nombre
-        lastName: "Perez",  // Apellido
-        middleName: "Lopez",  // Segundo apellido
-        documentType: "DNI",  // Tipo de documento
-        documentNumber: "12345678",  // Número de documento
-        isMinor: false,  // Indica si es menor de edad
-        bookType: "Ficción",  // Tipo de libro
-        description: "Un libro de aventuras épicas y misterio.",  // Descripción del libro
-        bookClaimType: "Dañado",  // Tipo de reclamación del libro
-        claim: "El libro llegó con la tapa dañada y algunas páginas rasgadas.",  // Reclamación sobre el libro
-        base64Document: "aGVsbG8gd29ybGQ=",  // Documento en formato base64 (ejemplo)
-        office: "Oficina Central"  
-      } */
+export const PrintableForm = ({ data }: { data: FormPrintProps }) => {
+  /*  const data={
+       plate: "ABC1234",  // Placa del vehículo
+       email: "juan.perez@email.com",  // Correo electrónico
+       phoneNumber: "987654321",  // Número de teléfono
+       firstName: "Juan",  // Primer nombre
+       lastName: "Perez",  // Apellido
+       middleName: "Lopez",  // Segundo apellido
+       documentType: "DNI",  // Tipo de documento
+       documentNumber: "12345678",  // Número de documento
+       isMinor: false,  // Indica si es menor de edad
+       bookType: "Ficción",  // Tipo de libro
+       description: "Un libro de aventuras épicas y misterio.",  // Descripción del libro
+       bookClaimType: "Dañado",  // Tipo de reclamación del libro
+       claim: "El libro llegó con la tapa dañada y algunas páginas rasgadas.",  // Reclamación sobre el libro
+       base64Document: "aGVsbG8gd29ybGQ=",  // Documento en formato base64 (ejemplo)
+       office: "Oficina Central"  
+     } */
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = () => {
@@ -155,6 +157,6 @@ export const PrintableForm= ({data}:{data:FormPrintProps}) => {
           Imprimir Formulario
         </button>
       </div>
-    </div> 
+    </div>
   );
 };
