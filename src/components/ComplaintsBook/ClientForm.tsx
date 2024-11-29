@@ -25,10 +25,19 @@ export const ClientForm: React.FC<ClientFormProps> = ({
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Nombres:</label>
+          <label className="block text-sm font-medium text-gray-700">Primer Nombre:</label>
           <input
             type="text"
-            onChange={(e) => onClientDataChange('firstname', e.target.value)}
+            onChange={(e) => onClientDataChange('firstName', e.target.value)}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Segundo Nombre:</label>
+          <input
+            type="text"
+            onChange={(e) => onClientDataChange('middleName', e.target.value)}
             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />

@@ -1,7 +1,7 @@
-import React, { useRef, useState, type ChangeEvent } from 'react';
+import React, { useState } from 'react';
 
 interface ComplaintDetailsProps {
-  onComplaintDetailsChange: (field: string, value: any) => void; // Cambiado `value` a `any` para manejar arrays de objetos
+  onComplaintDetailsChange: (field: string, value: any) => void;
 }
 
 export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
@@ -18,45 +18,33 @@ export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
   const convertFileToBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-  
+
       reader.onload = () => {
         if (reader.result) {
-          resolve(reader.result.toString()); // Convierte el resultado en string
+          resolve(reader.result.toString());
         } else {
           reject(new Error('Failed to read the file.'));
         }
       };
-  
+
       reader.onerror = () => {
         reject(new Error('An error occurred while reading the file.'));
       };
-  
-      reader.readAsDataURL(file); // Lee el archivo como Data URL
+
+      reader.readAsDataURL(file);
     });
   };
-  
-
 
   const handleFile = async (file: File) => {
     try {
       const base64String = await convertFileToBase64(file);
-      console.log('Base64:', base64String);
-  
-      // Aquí puedes enviar el base64String a tu API
-      await fetch('/api/endpoint', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ base64Document: base64String }),
-      });
+      // Envía el Base64 al manejador onComplaintDetailsChange
+      onComplaintDetailsChange('base64Document', base64String);
+      console.log('Base64 enviado:', base64String);
     } catch (error) {
       console.error('Error converting file to Base64:', error);
     }
   };
-
-  
-
 
   return (
     <div className="space-y-4">
@@ -69,7 +57,7 @@ export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
             type="radio"
             name="tipoReclamo"
             value="reclamo"
-            onChange={(e) => onComplaintDetailsChange('bookClainType', e.target.value)}
+            onChange={(e) => onComplaintDetailsChange('bookClaimType', e.target.value)}
             className="rounded-full border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             required
           />
@@ -80,7 +68,7 @@ export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
             type="radio"
             name="tipoReclamo"
             value="queja"
-            onChange={(e) => onComplaintDetailsChange('bookClainType', e.target.value)}
+            onChange={(e) => onComplaintDetailsChange('bookClaimType', e.target.value)}
             className="rounded-full border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           />
           <span className="ml-2 text-sm text-gray-600">Queja</span>
@@ -102,9 +90,13 @@ export const ComplaintDetails: React.FC<ComplaintDetailsProps> = ({
           Adjuntar archivos adicionales:
         </label>
         <input
-          type="file"     
+          type="file"
           accept=".doc,.docx,.pdf,.jpg,.jpeg"
-          onChange={()=>handleFile}
+          onChange={(e) => {
+            if (e.target.files && e.target.files[0]) {
+              handleFile(e.target.files[0]); // Llama a handleFile con el archivo seleccionado
+            }
+          }}
           className="mt-1 block w-full text-sm text-gray-500
             file:mr-4 file:py-2 file:px-4
             file:rounded-full file:border-0

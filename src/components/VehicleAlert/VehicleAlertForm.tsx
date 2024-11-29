@@ -44,10 +44,10 @@ export default function VehicleAlertForm() {
       }
   
       let json = await res.json();
-      console.log(json);
+      
   
     } catch (error) {
-    
+      alert("ocurrio un error al enviar el formulario. Intentelo de nuevo.")
     }
   };
 
