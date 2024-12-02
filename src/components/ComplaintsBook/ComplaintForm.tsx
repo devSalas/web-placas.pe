@@ -8,7 +8,7 @@ import { ComplaintDetails } from './ComplaintDetails';
 import { PrintableForm } from './ComponentPrint';
 
 
-interface ClientDataState{
+interface ClientDataState {
   plate?: string;
   email?: string;
   phoneNumber?: string;
@@ -18,15 +18,19 @@ interface ClientDataState{
   documentType?: string;
   documentNumber?: string;
 }
-interface GuardianDataState{
-
+interface GuardianDataState {
+  representativeName?: string;
+  representativeAddress?: string;
+  representativePhone?: string;
+  representativeEmail?: string;
 }
-interface productServiceState{
+interface productServiceState {
   bookType?: string;
+  bookClainType?: string;
   description?: string;
 }
 
-interface ComplaintDetailsState{
+interface ComplaintDetailsState {
   bookClaimType?: string;
   claim?: string;
   base64Document?: string;
@@ -35,12 +39,12 @@ interface ComplaintDetailsState{
 interface FormDataState {
   isMinor?: boolean;
   clientData?: ClientDataState;
-  productService?:productServiceState;
-  guardianData?:GuardianDataState ;
-  complaintDetails?:ComplaintDetailsState
+  productService?: productServiceState;
+  guardianData?: GuardianDataState;
+  complaintDetails?: ComplaintDetailsState
   office?: string;
-  base64Document?:string;
-  SwornDeclaration?:boolean;
+  base64Document?: string;
+  SwornDeclaration?: boolean;
 }
 
 
@@ -48,7 +52,8 @@ interface FormDataState {
 
 export const ComplaintForm: React.FC = () => {
   const [formData, setFormData] = useState<FormDataState>({
-
+    isMinor: false,
+    office: "ASOCIACIÓN AUTOMOTRIZ DEL PERÚ - LIMA"
   });
 
   const [mostrarVista, setMostrarVista] = useState(false);
@@ -56,32 +61,32 @@ export const ComplaintForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData)
+    console.log({ formData })
     const data = {
       plate: formData.clientData?.plate,
       email: formData.clientData?.email,
       phoneNumber: formData.clientData?.phoneNumber,
       firstName: formData.clientData?.firstName,
       lastName: formData.clientData?.lastName,
-     /*  middleName: formData.clientData.apellidos, */
+      middleName: formData.clientData?.middleName,
+      representativeName: formData.guardianData?.representativeName,
+      representativeAddress: formData.guardianData?.representativeAddress,
+      representativePhone: formData.guardianData?.representativePhone,
+      representativeEmail: formData.guardianData?.representativeEmail,
       documentType: formData.clientData?.documentType,
       documentNumber: formData.clientData?.documentNumber,
       isMinor: formData.isMinor,
       bookType: formData.productService?.bookType,
-      description: formData.productService?.description, 
+      description: formData.productService?.description,
       bookClaimType: formData.complaintDetails?.bookClaimType,
-      claim: formData.complaintDetails?.claim, 
+      claim: formData.complaintDetails?.claim,
       base64Document: formData.complaintDetails?.base64Document || "",
-      office: ""
+      office: formData?.office
     };
 
-
-
-    console.log(data)
-
-    return;
+    console.log({ data })
     try {
-      const response = await fetch('/api/submit-complaint', {
+      const response = await fetch('https://placasdev.aap.org.pe:8090/api/book', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -92,15 +97,22 @@ export const ComplaintForm: React.FC = () => {
       console.log(response)
 
       if (!response.ok) {
-        throw new Error('Error al enviar el formulario');
+
+        if (!response.ok) {
+          let json = await response.json();
+          const errorMessages = json.messages.map((msg: { code: string; description: string }) => msg.description).join('\n');
+          alert(`Error: \n${errorMessages}`);
+        }
       }
 
-      alert("Se registro su reclamos con exito");
+      let json = await response.json();
+      console.log({ json })
 
 
+         alert("Se registro su reclamos con exito");
+        setMostrarVista(true);
 
     } catch (error) {
-      console.error('Error:', error);
       alert('Error al enviar el formulario. Por favor, intente nuevamente.');
     }
   };
@@ -115,12 +127,12 @@ export const ComplaintForm: React.FC = () => {
 
 
   return (
-    <div ref={printRef} className="max-w-4xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden ">
+    <div ref={printRef} className="max-w-4xl mx-auto  shadow-lg rounded-lg overflow-hidden">
       {
         !mostrarVista ? (
-          <div className=''>
-            <div className="bg-gray-100 p-4 border-b">
-              <h1 className="text-2xl font-bold text-gray-800">LIBRO RECLAMACIONES</h1>
+          <div className=' '>
+            <div className="p-4 border-b">
+              <h1 className="text-2xl font-bold text-gray-800 text-center">LIBRO RECLAMACIONES</h1>
             </div>
             <form onSubmit={handleSubmit} className="p-6 space-y-6">
               <FormHeader />
@@ -193,14 +205,6 @@ export const ComplaintForm: React.FC = () => {
                   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 >
                   Enviar
-                </button>
-                <button
-                  onClick={() => setMostrarVista(true)}
-                  disabled={!success}
-                  type="button"
-                  className="inline-flex justify-center py-2 px-4 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                >
-                  Imprimir
                 </button>
                 <button
                   type="button"
