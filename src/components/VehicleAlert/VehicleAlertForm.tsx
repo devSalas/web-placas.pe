@@ -1,3 +1,4 @@
+import LoadingSpinner from '@components/LoadingSpinner';
 import { useState, useEffect} from 'react';
 
 interface PropertiesError {
@@ -11,13 +12,17 @@ export default function VehicleAlertForm() {
     plate: "",
     titleOrNumberVin: "",
   });
+  const [isLoading,setIsloading] = useState(false)
 
-  const [success,setSuccess] = useState("")
+  const [success,setSuccess] = useState(false)
   const [error,setError] = useState("")
 
   useEffect(() => {
     if (error) {
-      const timer = setTimeout(() => setError(""), 3000); 
+      const timer = setTimeout(() => {
+        setError("")
+        setSuccess(false)
+      }, 3000); 
       return () => clearTimeout(timer); 
     }
   }, [error]);
@@ -28,6 +33,7 @@ export default function VehicleAlertForm() {
     
     try {
       console.log(formData)
+      setIsloading(true)
       const res =await fetch("https://placasdev.aap.org.pe:8090/api/alert",{
         method:"POST",
         headers:{
@@ -39,15 +45,20 @@ export default function VehicleAlertForm() {
       if (!res.ok) {
         const errorData = await res.json();
         console.log("Error en la API:", errorData.messages);
-        setError(errorData.messages[0]?.description || "Error desconocido")
-        throw new Error(errorData.messages[0]?.description || "Error desconocido");
+        setError(errorData.messages[0]?.description || "Error desconocido");
+        return;
       }
   
       let json = await res.json();
       console.log(json);
+      if(json.success){
+        setSuccess(true)
+      }
   
     } catch (error) {
-    
+      alert("Ocurrio un error al enviar el formulario. Intentelo nuevamente por favor.")
+    }finally{
+      setIsloading(false)
     }
   };
 
@@ -133,13 +144,13 @@ export default function VehicleAlertForm() {
 
                 <div className="flex gap-4">
                   <button
-                    className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 flex items-center gap-2"
+                    className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700  gap-2 min-w-[120px] text-center"
                   >
-                    Guardar
+                    {!isLoading ? "Guardar" :<LoadingSpinner/> }
                   </button>
                   <button
                     type="button"
-                    className="px-6 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 flex items-center gap-2"
+                    className="px-6 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300  gap-2 min-w-[120px] text-center"
                     onClick={() => setFormData({ plate: "", titleOrNumberVin: "" })}
                   >
                     Cancelar

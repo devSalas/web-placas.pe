@@ -121,7 +121,7 @@ export const PrintableForm = ({ data }: { data: FormPrintProps }) => {
        phoneNumber: "987654321",  // Número de teléfono
        firstName: "Juan",  // Primer nombre
        lastName: "Perez",  // Apellido
-       middleName: "Lopez",  // Segundo apellido
+       middleName: "Lopez",  // Segundo apellido / ESTO DE AQUI NO SE, PROQUE SI HAY 
        documentType: "DNI",  // Tipo de documento
        documentNumber: "12345678",  // Número de documento
        isMinor: false,  // Indica si es menor de edad
@@ -130,7 +130,7 @@ export const PrintableForm = ({ data }: { data: FormPrintProps }) => {
        bookClaimType: "Dañado",  // Tipo de reclamación del libro
        claim: "El libro llegó con la tapa dañada y algunas páginas rasgadas.",  // Reclamación sobre el libro
        base64Document: "aGVsbG8gd29ybGQ=",  // Documento en formato base64 (ejemplo)
-       office: "Oficina Central"  
+       office: "" // aque se refiere NO DA DETALLES  
      } */
   const containerRef = useRef<HTMLDivElement>(null);
 
