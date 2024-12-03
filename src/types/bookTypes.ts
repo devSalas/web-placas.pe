@@ -26,7 +26,7 @@ interface ClientDataState {
     base64Document?: string;
   }
   
-export   interface FormDataState {
+export default  interface FormDataState {
     isMinor?: boolean;
     clientData?: ClientDataState;
     productService?: productServiceState;

@@ -123,14 +123,14 @@ export const ComplaintForm: React.FC = () => {
       console.log(response)
 
 
-      /*   if (!response.ok) {
+        if (!response.ok) {
           let json = await response.json();
           const errorMessages = json.messages.map((msg: { code: string; description: string }) => msg.description).join('\n');
           alert(`Error: \n${errorMessages}`);
         }
   
-        let json = await response.json(); */
-      const json = { success: true }
+        let json = await response.json();
+      /* const json = { success: true } */
 
       if (json.success) {
         alert("Se registro su reclamos con exito");

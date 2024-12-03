@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import printJS from "print-js";
+import type FormDataState from "src/types/bookTypes";
 
 interface FormPrintProps {
 
@@ -21,7 +22,8 @@ interface FormPrintProps {
 
 }
 
-const FormPrintComponent = ({data}:{data:FormPrintProps}) => {
+
+const FormPrintComponent = ({data}:{data:FormDataState }) => {
   console.log({data,n:25})
   return (
     <div id="print-container" className="font-sans max-w-3xl p-6 ">
@@ -35,19 +37,19 @@ const FormPrintComponent = ({data}:{data:FormPrintProps}) => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <strong>Primer Nombre:</strong> {data.firstName || "N/A"}
+            <strong>Primer Nombre:</strong> {data.clientData?.firstName || "N/A"}
           </div>
           <div>
-            <strong>Segundo Nombre:</strong> {data.middleName || "N/A"}
+            <strong>Segundo Nombre:</strong> {data.clientData?.middleName || "N/A"}
           </div>
           <div>
-            <strong>Apellidos:</strong> {data.lastName || "N/A"}
+            <strong>Apellidos:</strong> {data.clientData?.lastName || "N/A"}
           </div>
           <div>
-            <strong>Tipo de Documento:</strong> {data.documentType || "N/A"}
+            <strong>Tipo de Documento:</strong> {data.clientData?.documentType || "N/A"}
           </div>
           <div>
-            <strong>Número de Documento:</strong> {data.documentNumber || "N/A"}
+            <strong>Número de Documento:</strong> {data.clientData?.documentNumber || "N/A"}
           </div>
         </div>
       </div>
@@ -57,19 +59,16 @@ const FormPrintComponent = ({data}:{data:FormPrintProps}) => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <strong>Nombre y Apellido:</strong> {data.firstName || "N/A"}
+            <strong>Nombre y Apellido:</strong> {data.guardianData?.representativeName || "N/A"}
           </div>
           <div>
-            <strong>dirección:</strong> {data.middleName || "N/A"}
+            <strong>dirección:</strong> {data.guardianData?.representativeAddress || "N/A"}
           </div>
           <div>
-            <strong>Teléfono:</strong> {data.lastName || "N/A"}
+            <strong>Teléfono:</strong> {data.guardianData?.representativePhone || "N/A"}
           </div>
           <div>
-            <strong>Correo:</strong> {data.documentType || "N/A"}
-          </div>
-          <div>
-            <strong>Número de Documento:</strong> {data.documentNumber || "N/A"}
+            <strong>Correo:</strong> {data.guardianData?.representativeAddress || "N/A"}
           </div>
         </div>
       </div>)}
@@ -80,13 +79,13 @@ const FormPrintComponent = ({data}:{data:FormPrintProps}) => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <strong>Correo Electrónico:</strong> {data.email || "N/A"}
+            <strong>Correo Electrónico:</strong> {data.clientData?.email || "N/A"}
           </div>
           <div>
-            <strong>Teléfono:</strong> {data.phoneNumber || "N/A"}
+            <strong>Teléfono:</strong> {data.clientData?.phoneNumber || "N/A"}
           </div>
           <div>
-            <strong>Placa:</strong> {data.plate || "N/A"}
+            <strong>Placa:</strong> {data.clientData?.plate || "N/A"}
           </div>
         </div>
       </div>
@@ -97,16 +96,16 @@ const FormPrintComponent = ({data}:{data:FormPrintProps}) => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <strong>Tipo de Libro:</strong> {data.bookType || "N/A"}
+            <strong>Tipo de Libro:</strong> {data.productService?.bookType || "N/A"}
           </div>
           <div>
-            <strong>Descripción del Libro:</strong> {data.description || "N/A"}
+            <strong>Descripción del Libro:</strong> {data.productService?.description || "N/A"}
           </div>
           <div>
-            <strong>Tipo de Reclamo:</strong> {data.bookClaimType || "N/A"}
+            <strong>Tipo de Reclamo:</strong> {data.complaintDetails?.bookClaimType || "N/A"}
           </div>
           <div>
-            <strong>Detalle del Reclamo:</strong> {data.claim || "N/A"}
+            <strong>Detalle del Reclamo:</strong> {data.complaintDetails?.claim ||"N/A"}
           </div>
         </div>
       </div>
@@ -138,9 +137,9 @@ const FormPrintComponent = ({data}:{data:FormPrintProps}) => {
 };
 
 // Componente contenedor para manejar la impresión
-export const PrintableForm = ({ data }:{ data:FormPrintProps}) => {
+export const PrintableForm = ({ data }:{ data:FormDataState}) => {
 
-  const [currentData, setCurrentData] = useState<FormPrintProps>(data);
+  const [currentData, setCurrentData] = useState<FormDataState>(data);
 
   useEffect(() => {
     console.log({currentData, data})
