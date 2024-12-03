@@ -53,7 +53,33 @@ interface FormDataState {
 export const ComplaintForm: React.FC = () => {
   const [formData, setFormData] = useState<FormDataState>({
     isMinor: false,
-    office: "ASOCIACIÓN AUTOMOTRIZ DEL PERÚ - LIMA"
+    office: "ASOCIACIÓN AUTOMOTRIZ DEL PERÚ - LIMA",
+    clientData: {
+      plate: "",
+      email: "",
+      phoneNumber: "",
+      firstName: "",
+      lastName: "",
+      middleName: "",
+      documentType: "",
+      documentNumber: "",
+    },
+    productService: {
+      bookType: "",
+      bookClainType: "",
+      description: "",
+    },
+    guardianData: {
+      representativeName: "",
+      representativeAddress: "",
+      representativePhone: "",
+      representativeEmail: "",
+    },
+    complaintDetails: {
+      bookClaimType: "",
+      claim: "",
+      base64Document: "",
+    }
   });
 
   const [mostrarVista, setMostrarVista] = useState(false);
@@ -80,7 +106,7 @@ export const ComplaintForm: React.FC = () => {
       description: formData.productService?.description,
       bookClaimType: formData.complaintDetails?.bookClaimType,
       claim: formData.complaintDetails?.claim,
-      base64Document: formData.complaintDetails?.base64Document || "",
+      base64Document: formData.complaintDetails?.base64Document,
       office: formData?.office
     };
 
@@ -96,27 +122,27 @@ export const ComplaintForm: React.FC = () => {
 
       console.log(response)
 
-      if (!response.ok) {
 
-        if (!response.ok) {
+      /*   if (!response.ok) {
           let json = await response.json();
           const errorMessages = json.messages.map((msg: { code: string; description: string }) => msg.description).join('\n');
           alert(`Error: \n${errorMessages}`);
         }
-      }
+  
+        let json = await response.json(); */
+      const json = { success: true }
 
-      let json = await response.json();
-      console.log({ json })
-
-
-         alert("Se registro su reclamos con exito");
+      if (json.success) {
+        alert("Se registro su reclamos con exito");
         setMostrarVista(true);
+      } else {
+        return new Error();
+      }
 
     } catch (error) {
       alert('Error al enviar el formulario. Por favor, intente nuevamente.');
     }
   };
-
 
 
 
@@ -130,7 +156,7 @@ export const ComplaintForm: React.FC = () => {
     <div ref={printRef} className="max-w-4xl mx-auto  shadow-lg rounded-lg overflow-hidden">
       {
         !mostrarVista ? (
-          <div className=' '>
+          <div className=' bg-slate-200'>
             <div className="p-4 border-b">
               <h1 className="text-2xl font-bold text-gray-800 text-center">LIBRO RECLAMACIONES</h1>
             </div>

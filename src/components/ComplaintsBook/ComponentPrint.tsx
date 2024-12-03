@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import printJS from "print-js";
 
 interface FormPrintProps {
@@ -21,9 +21,8 @@ interface FormPrintProps {
 
 }
 
-
-
-const FormPrintComponent = ({ data }:{data:FormPrintProps}) => {
+const FormPrintComponent = ({data}:{data:FormPrintProps}) => {
+  console.log({data,n:25})
   return (
     <div id="print-container" className="font-sans max-w-3xl p-6 ">
       <div className="text-center border-b-2 border-gray-700 pb-4 mb-8">
@@ -36,7 +35,10 @@ const FormPrintComponent = ({ data }:{data:FormPrintProps}) => {
         </h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <strong>Nombres:</strong> {data.firstName || "N/A"}
+            <strong>Primer Nombre:</strong> {data.firstName || "N/A"}
+          </div>
+          <div>
+            <strong>Segundo Nombre:</strong> {data.middleName || "N/A"}
           </div>
           <div>
             <strong>Apellidos:</strong> {data.lastName || "N/A"}
@@ -49,6 +51,28 @@ const FormPrintComponent = ({ data }:{data:FormPrintProps}) => {
           </div>
         </div>
       </div>
+      {data.isMinor &&(<div className="mb-6 border border-gray-300 p-4 rounded">
+        <h2 className="text-lg font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
+          Información del apoderado
+        </h2>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <strong>Nombre y Apellido:</strong> {data.firstName || "N/A"}
+          </div>
+          <div>
+            <strong>dirección:</strong> {data.middleName || "N/A"}
+          </div>
+          <div>
+            <strong>Teléfono:</strong> {data.lastName || "N/A"}
+          </div>
+          <div>
+            <strong>Correo:</strong> {data.documentType || "N/A"}
+          </div>
+          <div>
+            <strong>Número de Documento:</strong> {data.documentNumber || "N/A"}
+          </div>
+        </div>
+      </div>)}
 
       <div className="mb-6 border border-gray-300 p-4 rounded">
         <h2 className="text-lg font-semibold text-gray-700 border-b border-gray-300 pb-2 mb-4">
@@ -114,24 +138,16 @@ const FormPrintComponent = ({ data }:{data:FormPrintProps}) => {
 };
 
 // Componente contenedor para manejar la impresión
-export const PrintableForm = ({ data }: { data: FormPrintProps }) => {
-  /*  const data={
-       plate: "ABC1234",  // Placa del vehículo
-       email: "juan.perez@email.com",  // Correo electrónico
-       phoneNumber: "987654321",  // Número de teléfono
-       firstName: "Juan",  // Primer nombre
-       lastName: "Perez",  // Apellido
-       middleName: "Lopez",  // Segundo apellido / ESTO DE AQUI NO SE, PROQUE SI HAY 
-       documentType: "DNI",  // Tipo de documento
-       documentNumber: "12345678",  // Número de documento
-       isMinor: false,  // Indica si es menor de edad
-       bookType: "Ficción",  // Tipo de libro
-       description: "Un libro de aventuras épicas y misterio.",  // Descripción del libro
-       bookClaimType: "Dañado",  // Tipo de reclamación del libro
-       claim: "El libro llegó con la tapa dañada y algunas páginas rasgadas.",  // Reclamación sobre el libro
-       base64Document: "aGVsbG8gd29ybGQ=",  // Documento en formato base64 (ejemplo)
-       office: "" // aque se refiere NO DA DETALLES  
-     } */
+export const PrintableForm = ({ data }:{ data:FormPrintProps}) => {
+
+  const [currentData, setCurrentData] = useState<FormPrintProps>(data);
+
+  useEffect(() => {
+    console.log({currentData, data})
+    setCurrentData(data);
+  }, [data]);
+
+
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handlePrint = () => {
@@ -147,7 +163,7 @@ export const PrintableForm = ({ data }: { data: FormPrintProps }) => {
   return (
     <div className="my-[50px]">
       <div ref={containerRef} className="w-full flex justify-center items-center ">
-        <FormPrintComponent data={data} />
+        <FormPrintComponent data={currentData} />
       </div>
       <div className="text-center mt-6">
         <button
